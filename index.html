@@ -1,816 +1,919 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>702 Estados Unidos - Sequoia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>702 Estados Unidos — Jardins</title>
+  <meta name="description" content="Landing page 702 Estados Unidos — Jardins, São Paulo/SP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --carbon: #1d1d1b;
+      --carbon-deep: #131311;
+      --carbon-dark: #0e0e0c;
+      --mist: #c6c6c4;
+      --porcelain: #e3e1df;
+      --carbon-translucent: rgba(29, 29, 27, 0.88);
+      --ease-editorial: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --ease-silent: cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max: 1280px;
+    }
 
-    <style>
-        :root {
-            --carbon: #1d1d1b;
-            --carbon-deep: #131311;
-            --mist: #c6c6c4;
-            --porcelain: #e3e1df;
-            --carbon-translucent: rgba(29, 29, 27, 0.88);
-            --ease-editorial: cubic-bezier(0.2, 0.8, 0.2, 1);
-            --ease-silent: cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--carbon); -webkit-font-smoothing: antialiased; }
+    body { margin: 0; font-family: var(--font-sans); font-weight: 300; color: var(--mist); background: var(--carbon); overflow-x: hidden; line-height: 1.5; }
+    ::selection { background: var(--porcelain); color: #000; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
 
-        body {
-            font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
-            background-color: var(--carbon);
-            color: var(--mist);
-            font-weight: 300;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    .container { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .overline { font-size: 10px; letter-spacing: 0.48em; text-transform: uppercase; }
+    .overline-soft { color: rgba(255,255,255,0.32); }
+    .heading-xl { margin: 0; color: var(--porcelain); font-size: clamp(3rem, 8vw, 7rem); font-weight: 300; line-height: 0.94; text-transform: uppercase; letter-spacing: 0.16em; }
+    .heading-lg { margin: 0; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; line-height: 1.05; text-transform: uppercase; letter-spacing: 0.14em; }
+    .heading-md { margin: 0; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.18; text-transform: uppercase; letter-spacing: 0.16em; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 48px; padding: 0 32px; border-radius: 999px; border: 1px solid currentColor; background: transparent; color: currentColor; text-transform: uppercase; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; transition: background .35s var(--ease-silent), color .35s var(--ease-silent), border-color .35s var(--ease-silent), transform .35s var(--ease-silent); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-light { background: var(--porcelain); color: var(--carbon); border-color: var(--porcelain); }
+    .btn-light:hover { background: transparent; color: var(--porcelain); }
+    .btn-outline-dark { color: var(--carbon); border-color: rgba(29,29,27,.6); }
+    .btn-outline-dark:hover { background: var(--carbon); color: #fff; }
+    .btn-outline-light { color: var(--porcelain); border-color: var(--porcelain); }
+    .btn-outline-light:hover { background: var(--porcelain); color: var(--carbon); }
+    .icon-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); color: #fff; background: transparent; display: inline-flex; align-items: center; justify-content: center; transition: .3s var(--ease-silent); }
+    .icon-btn:hover { background: #fff; color: #000; }
+    .icon { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-fill { fill: currentColor; stroke: currentColor; }
 
-        .diagonal-clip-left {
-            clip-path: polygon(49.69% 0, 100% 0, 100% 100%, 0 100%);
-        }
+    .site-header { position: fixed; z-index: 50; top: 0; left: 0; right: 0; transform: translateY(-100%); transition: transform .4s var(--ease-silent); background: var(--carbon-translucent); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.1); }
+    .site-header.is-visible { transform: translateY(0); }
+    .nav-inner { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { color: var(--porcelain); font-size: 13px; letter-spacing: .24em; text-transform: uppercase; font-weight: 400; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { position: relative; padding: 4px 0; color: var(--mist); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; transition: color .3s, letter-spacing .3s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--porcelain); transition: width .3s; }
+    .nav-links a:hover, .nav-links a.is-active { color: var(--porcelain); letter-spacing: .28em; }
+    .nav-links a:hover::after, .nav-links a.is-active::after { width: 100%; }
+    .menu-toggle { display: none; width: 40px; height: 40px; border: 0; background: transparent; padding: 8px; flex-direction: column; gap: 6px; align-items: center; justify-content: center; }
+    .menu-toggle span { display: block; width: 24px; height: 1px; background: var(--porcelain); transition: .3s var(--ease-silent); }
+    .menu-toggle.is-open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu { display: none; position: absolute; left: 0; right: 0; top: 64px; background: var(--carbon); padding: 32px; border-bottom: 1px solid rgba(255,255,255,.1); opacity: 0; transform: translateY(-12px); pointer-events: none; transition: .28s var(--ease-silent); }
+    .mobile-menu.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .mobile-menu a { display: block; color: var(--mist); font-size: 12px; letter-spacing: .24em; text-transform: uppercase; padding: 12px 0; }
 
-        .contact-diagonal-clip {
-            clip-path: polygon(75% 0, 100% 0, 100% 100%, 0 100%);
-        }
+    .hero { min-height: 100vh; position: relative; overflow: hidden; background: var(--carbon); }
+    .hero-bg { position: absolute; inset: 0; transform: scale(1.05); background-image: linear-gradient(180deg, rgba(29,29,27,.28), rgba(29,29,27,.52)), url("https://raw.githubusercontent.com/gustavokzintel/702-eua/main/ChatGPT-Image-7-de-abr.png"); background-size: cover; background-position: center; will-change: transform; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.3), rgba(29,29,27,.8)); }
+    .hero-content { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding-top: 112px; padding-bottom: 48px; }
+    .hero-kicker { margin: 0; color: var(--porcelain); opacity: .8; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; }
+    .brand-logo-large { align-self: center; width: min(760px, 88vw); filter: drop-shadow(0 18px 35px rgba(0,0,0,.45)); }
+    .brand-logo-large img { width: 100%; height: auto; }
+    .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
+    .hero-copy { max-width: 440px; }
+    .hero-copy p { margin: 0 0 16px; }
+    .hero-copy p:nth-child(1) { color: var(--porcelain); font-style: italic; font-size: 14px; opacity: .9; }
+    .hero-copy p:nth-child(2) { color: var(--porcelain); font-size: 16px; font-weight: 500; letter-spacing: .04em; }
+    .hero-copy p:nth-child(3) { color: var(--mist); font-size: 14px; line-height: 1.7; }
+    .hero-copy p:nth-child(4) { padding-top: 8px; color: var(--mist); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; }
 
-        [x-cloak] { display: none !important; }
+    .film { background: var(--carbon); padding: 160px 0; }
+    .section-head-center { text-align: center; margin-bottom: 96px; }
+    .section-head-center .overline { margin-bottom: 24px; }
+    .video-card { position: relative; aspect-ratio: 16/9; max-width: 1024px; margin: 0 auto; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.45); background: var(--carbon-deep); }
+    .video-card-bg { position: absolute; inset: 0; background-image: url("https://raw.githubusercontent.com/gustavokzintel/702-eua/main/ChatGPT-Image-7-de-abra.png"); background-size: cover; background-position: center; transition: transform .8s var(--ease-editorial); }
+    .video-card:hover .video-card-bg { transform: scale(1.04); }
+    .video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.42); display: flex; align-items: center; justify-content: center; transition: background .7s var(--ease-silent); }
+    .video-card:hover .video-overlay { background: rgba(0,0,0,.22); }
+    .play-circle { width: 96px; height: 96px; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: transform .4s; }
+    .video-card:hover .play-circle { transform: scale(1.1); }
 
-        .writing-vertical-lr {
-            writing-mode: vertical-lr;
-        }
+    .manifesto { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 160px 0; background: var(--carbon); overflow: hidden; }
+    .manifesto-rail { position: absolute; right: 48px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center; color: var(--mist); opacity: .3; white-space: nowrap; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; }
+    .manifesto-number { position: absolute; bottom: 48px; left: 48px; color: var(--mist); opacity: .3; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; }
+    .manifesto-inner { max-width: 880px; }
+    .manifesto p { margin: 0; }
+    .manifesto-line { color: var(--porcelain); font-size: clamp(1.5rem, 4vw, 2.55rem); letter-spacing: .18em; text-transform: uppercase; font-weight: 300; line-height: 1.35; margin-bottom: 48px !important; }
+    .manifesto-line strong { font-weight: 500; }
+    .manifesto-sub { padding-top: 48px; color: var(--mist); font-size: clamp(1.12rem, 2vw, 1.35rem); font-style: italic; letter-spacing: .04em; }
+    .manifesto-end { margin-top: 16px !important; color: var(--porcelain); text-transform: uppercase; letter-spacing: .24em; font-weight: 500; }
 
-        scroll-behavior: smooth;
-    </style>
+    .gallery { position: relative; padding: 96px 0; background: var(--porcelain); color: var(--carbon); overflow: hidden; }
+    .watermark-logo { position: absolute; right: 0; top: 0; width: 30vw; opacity: .03; transform: translateY(-25%); filter: grayscale(1) invert(1); pointer-events: none; user-select: none; }
+    .split-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 80px; }
+    .split-head p:not(.overline) { color: rgba(0,0,0,.7); line-height: 1.9; max-width: 430px; }
+    .rule { height: 1px; background: rgba(0,0,0,.2); width: 100%; margin-bottom: 16px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+    .gallery-card { grid-column: span 2; position: relative; min-height: 440px; overflow: hidden; background: var(--carbon); cursor: pointer; color: #fff; transition: transform .35s var(--ease-editorial); }
+    .gallery-card:hover { transform: scale(1.02); }
+    .gallery-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .7s var(--ease-editorial); }
+    .gallery-card:hover .gallery-card-bg { transform: scale(1.1); }
+    .gallery-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(0,0,0,.2), rgba(0,0,0,.82)); opacity: .9; }
+    .gallery-index { position: absolute; z-index: 1; top: 24px; right: 24px; color: rgba(255,255,255,.6); font-size: 10px; letter-spacing: .12em; font-weight: 500; }
+    .gallery-card-copy { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; padding: 32px; }
+    .eyebrow-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; opacity: .72; transition: opacity .3s; }
+    .gallery-card:hover .eyebrow-row { opacity: 1; }
+    .eyebrow-row span { font-size: 9px; letter-spacing: .38em; text-transform: uppercase; }
+    .eyebrow-row i { display: block; width: 80px; max-width: 30%; height: 1px; background: rgba(255,255,255,.42); }
+    .gallery-card h3 { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.65rem); font-weight: 300; text-transform: uppercase; letter-spacing: .14em; line-height: 1.25; }
+    .gallery-card p { margin: 16px 0 0; max-width: 300px; color: rgba(255,255,255,.55); font-size: 12px; opacity: 0; transform: translateY(14px); transition: opacity .5s, transform .5s; }
+    .gallery-card:hover p { opacity: 1; transform: translateY(0); }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        carbon: '#1d1d1b',
-                        'carbon-deep': '#131311',
-                        mist: '#c6c6c4',
-                        porcelain: '#e3e1df',
-                    },
-                    fontFamily: {
-                        sans: ['"Source Sans 3"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+    .modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,.9); backdrop-filter: blur(18px); opacity: 0; pointer-events: none; transition: opacity .25s var(--ease-silent); }
+    .modal.is-open { opacity: 1; pointer-events: auto; }
+    .modal-panel { position: relative; width: min(1152px, 100%); background: var(--carbon); overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,.6); transform: scale(.94); opacity: 0; transition: .28s var(--ease-editorial); }
+    .modal.is-open .modal-panel { transform: scale(1); opacity: 1; }
+    .modal-close { position: absolute; z-index: 2; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); background: rgba(0,0,0,.44); color: #fff; display: flex; align-items: center; justify-content: center; transition: .3s; }
+    .modal-close:hover { background: #fff; color: #000; }
+    .modal-image { aspect-ratio: 16/9; background-size: cover; background-position: center; }
+    .modal-footer { padding: 32px clamp(32px, 5vw, 48px); border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; color: #fff; }
+    .modal-footer h3 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; text-transform: uppercase; letter-spacing: .14em; }
+    .modal-footer p { max-width: 580px; color: rgba(255,255,255,.62); line-height: 1.7; }
+    .modal-controls { display: flex; gap: 16px; flex-shrink: 0; }
+
+    .features { padding: 160px 0; background: var(--mist); color: var(--carbon); }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(64px, 10vw, 128px); }
+    .sticky-block { position: sticky; top: 128px; align-self: start; }
+    .features .sticky-block p:last-child { color: rgba(0,0,0,.62); font-style: italic; font-size: 1.25rem; font-weight: 300; }
+    .feature-list { display: grid; gap: 0; }
+    .feature-item { display: grid; grid-template-columns: 60px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid rgba(0,0,0,.1); transition: border-color .3s; }
+    .feature-item:hover { border-color: #000; }
+    .feature-item span { color: rgba(0,0,0,.3); font-size: 10px; font-weight: 700; padding-top: 4px; transition: color .3s; }
+    .feature-item:hover span { color: #000; }
+    .feature-item p { margin: 0; font-size: 1.12rem; font-weight: 300; line-height: 1.7; }
+
+    .leisure { background: var(--carbon); overflow: hidden; }
+    .leisure-intro { padding: 128px 24px 32px; text-align: center; }
+    .leisure-stage { position: relative; height: 70vh; min-height: 500px; }
+    .leisure-track { position: absolute; inset: 0; display: flex; transition: transform .7s var(--ease-editorial); }
+    .leisure-slide { min-width: 100%; height: 100%; position: relative; overflow: hidden; }
+    .leisure-image { position: absolute; width: 80%; height: 100%; background-size: cover; background-position: center; }
+    .diagonal-cover { position: absolute; right: 0; top: 0; width: 50%; height: 100%; background: var(--carbon); clip-path: polygon(49.69% 0, 100% 0, 100% 100%, 0 100%); pointer-events: none; }
+    .leisure-info { position: absolute; inset: 0 0 0 auto; width: 45%; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; padding: 0 clamp(48px, 7vw, 96px); text-align: right; }
+    .leisure-copy { max-width: 360px; transition: opacity .32s, transform .32s; }
+    .leisure-copy.is-changing { opacity: 0; transform: translateX(20px); }
+    .leisure-copy h3 { margin: 16px 0; font-size: clamp(2.2rem, 4.5vw, 3.3rem); color: var(--porcelain); font-weight: 300; text-transform: uppercase; letter-spacing: .15em; }
+    .leisure-copy .line { width: 56px; height: 1px; background: rgba(255,255,255,.3); margin: 26px 0 0 auto; }
+    .leisure-copy p:last-child { color: var(--mist); line-height: 1.8; font-size: 14px; }
+    .leisure-controls { margin-top: 48px; display: flex; align-items: center; gap: 32px; }
+    .leisure-counter { color: rgba(255,255,255,.5); font-size: 11px; letter-spacing: .24em; }
+    .leisure-cta { padding: 96px 24px; text-align: center; }
+
+    .plants { padding: 128px 0; background: var(--mist); color: var(--carbon); }
+    .tabs { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 80px; }
+    .tab { padding: 14px 32px; border-radius: 999px; border: 1px solid rgba(29,29,27,.3); background: transparent; color: var(--carbon); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .22em; transition: .4s var(--ease-silent); }
+    .tab:hover { border-color: var(--carbon); }
+    .tab.is-active { background: var(--carbon); color: var(--porcelain); border-color: var(--carbon); transform: translateY(-2px); }
+    .plant-card { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: stretch; background: var(--porcelain); padding: clamp(24px, 4vw, 48px); border: 1px solid rgba(0,0,0,.1); }
+    .plant-visual { position: relative; min-height: 560px; background: #f5f4f2; border: 1px solid rgba(0,0,0,.1); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 48px; }
+    .plant-visual::before { content: ""; position: absolute; inset: 0; opacity: .1; background: radial-gradient(circle at 22% 18%, #fff, transparent 28%), linear-gradient(135deg, #e3e1df, #c6c6c4); }
+    .plant-logo-mark { position: absolute; bottom: -5%; right: -5%; width: 30vw; opacity: .03; filter: grayscale(1) invert(1); pointer-events: none; }
+    .plant-image { position: relative; z-index: 1; width: 100%; height: 100%; min-height: 460px; background-size: contain; background-repeat: no-repeat; background-position: center; filter: drop-shadow(0 18px 30px rgba(0,0,0,.18)); transition: opacity .25s, transform .25s; }
+    .plant-image.is-changing { opacity: 0; transform: scale(.96); }
+    .plant-content { display: flex; flex-direction: column; justify-content: center; gap: 48px; }
+    .plant-text { transition: opacity .25s, transform .25s; }
+    .plant-text.is-changing { opacity: 0; transform: translateY(10px); }
+    .plant-text h3 { margin: 12px 0 24px; color: var(--carbon); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; text-transform: uppercase; letter-spacing: .14em; }
+    .plant-text p:last-child { max-width: 430px; color: rgba(0,0,0,.6); line-height: 1.7; }
+    .plant-specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+    .spec { padding-top: 24px; border-top: 1px solid rgba(0,0,0,.1); }
+    .spec p:first-child { margin: 0 0 12px; color: rgba(0,0,0,.5); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; }
+    .spec p:last-child { margin: 0; color: var(--carbon); font-size: 14px; font-weight: 500; }
+
+    .progress { padding: 160px 0; background: var(--carbon); color: var(--porcelain); }
+    .progress-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(64px, 10vw, 128px); align-items: start; }
+    .progress-number { margin: 16px 0 0; font-size: clamp(4.2rem, 10vw, 8rem); font-weight: 300; letter-spacing: -0.05em; line-height: .9; }
+    .progress-number span { font-size: clamp(1.6rem, 3vw, 2.2rem); opacity: .5; margin-left: 4px; }
+    .progress-label { margin: 8px 0 0; padding-left: 8px; color: rgba(255,255,255,.5); font-size: 10px; letter-spacing: .32em; text-transform: uppercase; }
+    .progress-list { display: grid; gap: 40px; }
+    .progress-row-head { display: flex; justify-content: space-between; align-items: flex-end; color: rgba(255,255,255,.42); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+    .bar { height: 4px; margin-top: 16px; background: rgba(255,255,255,.1); overflow: hidden; position: relative; }
+    .bar span { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--porcelain); transition: width 1.5s var(--ease-editorial); }
+
+    .location { padding: 160px 0; background: var(--carbon); border-top: 1px solid rgba(255,255,255,.05); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; }
+    .location-copy { display: grid; gap: 32px; }
+    .location-copy h2 { color: var(--porcelain); }
+    .location-copy .body { max-width: 540px; color: rgba(255,255,255,.62); line-height: 1.9; font-size: 1.1rem; }
+    .map-card { aspect-ratio: 1; background: var(--carbon-deep); border: 1px solid rgba(255,255,255,.1); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .map-bg { position: absolute; inset: 0; opacity: .2; background-image: url("https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20182046.png"); background-size: cover; background-position: center; filter: grayscale(1); }
+    .map-svg { position: relative; z-index: 1; width: 70%; height: 70%; }
+    .map-svg text { font: 700 20px var(--font-sans); letter-spacing: .16em; }
+
+    .contact { min-height: 100vh; background: var(--carbon-deep); color: var(--porcelain); overflow: hidden; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+    .contact-image { position: relative; min-height: 400px; }
+    .contact-image-bg { position: absolute; inset: 0; background-image: url("https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20183013.png"); background-size: cover; background-position: left center; }
+    .contact-image::after { content: ""; position: absolute; inset: 0; background: var(--carbon-deep); clip-path: polygon(75% 0, 100% 0, 100% 100%, 0 100%); }
+    .vertical-label { position: absolute; z-index: 1; top: 48px; left: 48px; writing-mode: vertical-rl; color: rgba(255,255,255,.5); opacity: .6; font-size: 11px; letter-spacing: .32em; text-transform: uppercase; }
+    .contact-content { display: flex; flex-direction: column; justify-content: center; max-width: 680px; padding: clamp(32px, 8vw, 128px); gap: 48px; }
+    .form { display: grid; gap: 32px; transition: opacity .3s, transform .3s; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .field { border-bottom: 1px solid rgba(255,255,255,.2); padding: 16px 0; transition: border-color .3s; }
+    .field:focus-within { border-color: #fff; }
+    .field label { display: block; color: rgba(255,255,255,.4); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+    .field input { width: 100%; border: 0; outline: 0; background: transparent; color: #fff; font-size: 1.08rem; font-weight: 300; }
+    .field input::placeholder { color: rgba(255,255,255,.2); }
+    .radio-group p { margin: 0 0 16px; color: rgba(255,255,255,.4); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+    .radio-options { display: flex; flex-wrap: wrap; gap: 32px; }
+    .radio-options input { position: absolute; opacity: 0; pointer-events: none; }
+    .radio-options span { color: rgba(255,255,255,.52); border-bottom: 1px solid transparent; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; transition: .25s; }
+    .radio-options label:hover span, .radio-options input:checked + span { color: #fff; border-color: #fff; }
+    .submit-btn { width: fit-content; color: #fff; border-color: rgba(255,255,255,.3); }
+    .submit-btn:hover { background: #fff; color: #000; }
+    .success { display: none; padding-top: 48px; }
+    .success h3 { margin: 0 0 24px; color: var(--porcelain); font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 300; letter-spacing: .2em; text-transform: uppercase; }
+    .success p { color: var(--mist); font-size: 1.25rem; font-weight: 300; line-height: 1.7; }
+    .contact.is-submitted .form { display: none; }
+    .contact.is-submitted .success { display: block; animation: fadeUp .55s var(--ease-editorial) both; }
+
+    .footer { padding: 96px 0; background: var(--carbon-dark); color: var(--mist); border-top: 1px solid rgba(255,255,255,.05); }
+    .footer-inner { display: grid; gap: 96px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 64px; }
+    .footer h4 { margin: 0 0 24px; color: var(--porcelain); font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+    .footer-brand p:first-child { margin: 0 0 8px; color: var(--porcelain); font-size: 14px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; }
+    .footer-brand p:nth-child(2) { margin: 0 0 32px; color: rgba(255,255,255,.3); font-size: 10px; letter-spacing: .32em; text-transform: uppercase; }
+    .footer-brand p:nth-child(3) { font-style: italic; font-size: 14px; line-height: 1.7; opacity: .72; }
+    .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 14px; }
+    .partners { display: flex; gap: 16px; flex-wrap: wrap; }
+    .partner { padding: 12px 24px; border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.4); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+    .footer-bottom { padding-top: 48px; border-top: 1px solid rgba(255,255,255,.05); display: flex; justify-content: space-between; align-items: center; gap: 32px; }
+    .legal { max-width: 760px; color: rgba(255,255,255,.3); font-size: 9px; letter-spacing: .02em; line-height: 1.9; }
+    .social { display: flex; gap: 48px; flex-shrink: 0; }
+    .social a { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; transition: color .25s; }
+    .social a:hover { color: #fff; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease-editorial), transform .8s var(--ease-editorial); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal[data-delay="1"] { transition-delay: .15s; }
+    .reveal[data-delay="2"] { transition-delay: .3s; }
+    .reveal[data-delay="3"] { transition-delay: .45s; }
+    .reveal[data-delay="4"] { transition-delay: .6s; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 1024px) {
+      .container { width: min(100% - 40px, var(--max)); }
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+      .mobile-menu { display: block; }
+      .hero-bottom, .modal-footer, .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .split-head, .features-grid, .plant-card, .progress-grid, .location-grid, .contact-grid { grid-template-columns: 1fr; }
+      .sticky-block { position: static; }
+      .gallery-card { grid-column: span 6; }
+      .leisure-stage { height: auto; min-height: 780px; }
+      .leisure-image { width: 100%; height: 52%; top: 0; }
+      .diagonal-cover { top: 45%; width: 100%; height: 55%; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%); }
+      .leisure-info { top: 46%; bottom: 0; width: 100%; height: 54%; padding: 72px 28px 48px; text-align: left; align-items: flex-start; }
+      .leisure-copy .line { margin-left: 0; }
+      .contact-image::after { clip-path: polygon(0 70%, 100% 35%, 100% 100%, 0 100%); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .plant-visual { min-height: 420px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 32px, var(--max)); }
+      .hero-content { padding-top: 96px; }
+      .hero-bottom { gap: 32px; }
+      .btn { width: 100%; padding-left: 20px; padding-right: 20px; }
+      .film, .manifesto, .features, .progress, .location { padding: 96px 0; }
+      .gallery, .plants { padding: 80px 0; }
+      .manifesto-rail { display: none; }
+      .manifesto-number { left: 24px; bottom: 24px; }
+      .manifesto-line { letter-spacing: .12em; }
+      .gallery-card { min-height: 360px; }
+      .modal { padding: 12px; }
+      .modal-footer { padding: 28px 22px; }
+      .modal-controls { width: 100%; justify-content: space-between; }
+      .leisure-stage { min-height: 720px; }
+      .leisure-controls { width: 100%; justify-content: space-between; gap: 18px; }
+      .tabs { gap: 10px; }
+      .tab { width: 100%; }
+      .plant-specs, .form-row, .footer-grid { grid-template-columns: 1fr; }
+      .plant-card { gap: 40px; }
+      .plant-visual { padding: 24px; min-height: 360px; }
+      .plant-image { min-height: 300px; }
+      .contact-content { padding: 40px 24px 72px; }
+      .footer-bottom { align-items: flex-start; }
+      .social { flex-direction: column; gap: 18px; }
+    }
+  </style>
 </head>
-<body x-data="app()" x-init="initApp()">
-
-    <!-- Navbar -->
-    <header 
-        x-show="navVisible"
-        x-transition:enter="transition ease-out duration-400"
-        x-transition:enter-start="-translate-y-full"
-        x-transition:enter-end="translate-y-0"
-        x-transition:leave="transition ease-in duration-400"
-        x-transition:leave-start="translate-y-0"
-        x-transition:leave-end="-translate-y-full"
-        class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-carbon/80 border-b border-white/10"
-        x-cloak
-    >
-        <div class="max-w-7xl mx-auto h-16 flex items-center justify-between px-6 lg:px-12">
-            <div class="flex items-center gap-4">
-                <span class="text-[13px] tracking-[0.24em] uppercase font-normal text-porcelain">702 Estados Unidos</span>
-            </div>
-
-            <nav class="hidden md:flex items-center gap-8">
-                <template x-for="link in navLinks" :key="link.id">
-                    <a
-                        :href="'#' + link.id"
-                        class="relative text-[11px] tracking-[0.24em] uppercase py-1 transition-all duration-300"
-                        :class="activeSection === link.id ? 'text-porcelain tracking-[0.28em]' : 'text-mist hover:text-porcelain hover:tracking-[0.28em]'"
-                        x-text="link.label"
-                    ></a>
-                </template>
-            </nav>
-
-            <button 
-                class="md:hidden flex flex-col gap-1.5 p-2" 
-                @click="isMobileMenuOpen = !isMobileMenuOpen"
-            >
-                <span class="block w-6 h-px bg-porcelain transition-transform" :class="isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''"></span>
-                <span class="block w-6 h-px bg-porcelain" :class="isMobileMenuOpen ? 'opacity-0' : ''"></span>
-                <span class="block w-6 h-px bg-porcelain transition-transform" :class="isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''"></span>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div 
-            x-show="isMobileMenuOpen"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 -translate-y-4"
-            x-transition:enter-end="opacity-100 translate-y-0"
-            x-cloak
-            class="md:hidden absolute top-16 left-0 right-0 bg-carbon p-8 border-b border-white/10"
-        >
-            <div class="flex flex-col gap-6">
-                <template x-for="link in navLinks" :key="link.id">
-                    <a
-                        :href="'#' + link.id"
-                        @click="isMobileMenuOpen = false"
-                        class="text-xs tracking-[0.24em] uppercase text-mist hover:text-porcelain"
-                        x-text="link.label"
-                    ></a>
-                </template>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="relative min-h-screen overflow-hidden bg-carbon">
-            <div 
-                id="hero-bg"
-                class="absolute inset-0 bg-cover bg-center" 
-                style="background-image: linear-gradient(180deg, rgba(29, 29, 27, 0.28), rgba(29, 29, 27, 0.52)), url('https://raw.githubusercontent.com/gustavokzintel/702-eua/main/ChatGPT-Image-7-de-abr.png')"
-            ></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-carbon/80"></div>
-            
-            <div class="relative z-10 max-w-7xl mx-auto min-h-screen flex flex-col justify-between pt-28 pb-12 px-6 lg:px-12">
-                <p class="text-[11px] tracking-[0.32em] uppercase text-porcelain opacity-80">ADDRESS | VIEW | ARCHITECTURE</p>
-                
-                <div class="self-center w-full max-w-[760px] filter drop-shadow-2xl">
-                    <img src="https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Logo_negativo_centra.svg" alt="702" class="w-full h-auto">
-                </div>
-
-                <div class="flex flex-col md:flex-row justify-between items-end gap-12">
-                    <div class="max-w-md space-y-4">
-                        <p class="italic text-porcelain text-sm opacity-90">Quando nada é supérfluo, tudo é definitivo.</p>
-                        <p class="text-porcelain font-medium text-base tracking-wide">50m² a 165m² · 1 e 2 dorms · 1 vaga</p>
-                        <p class="text-mist leading-relaxed text-sm">O lifestyle dos Jardins e a essência do Jardim Europa juntos em um endereço.</p>
-                        <p class="text-[10px] tracking-[0.24em] uppercase text-mist pt-2">Rua Estados Unidos, 702 - Jardins, São Paulo / SP</p>
-                    </div>
-                    <a 
-                        href="#contato" 
-                        class="inline-flex items-center justify-center min-h-[48px] px-8 rounded-full border border-porcelain bg-porcelain text-carbon text-[12px] tracking-[0.24em] uppercase font-semibold transition-all duration-300 hover:bg-transparent hover:text-porcelain"
-                    >
-                        Tenho Interesse
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Campaign -->
-        <section class="bg-carbon py-32 px-6">
-            <div class="max-w-7xl mx-auto flex flex-col items-center">
-                <div class="text-center mb-16 space-y-6 w-full reveal">
-                   <p class="text-[10px] tracking-[0.48em] uppercase text-white/30">Filme da Campanha</p>
-                   <h2 class="text-2xl md:text-3xl font-light uppercase tracking-widest text-white">702 Estados Unidos</h2>
-                </div>
-                
-                <div class="relative aspect-video w-full max-w-5xl mx-auto overflow-hidden shadow-2xl reveal">
-                   <div 
-                     class="absolute inset-0 bg-cover bg-center" 
-                     style="background-image: url('https://raw.githubusercontent.com/gustavokzintel/702-eua/main/ChatGPT-Image-7-de-abra.png')"
-                   ></div>
-                   <div class="absolute inset-0 bg-black/40 flex items-center justify-center group cursor-pointer hover:bg-black/20 transition-all duration-700">
-                      <div class="w-24 h-24 rounded-full border border-white/40 flex items-center justify-center transition-transform group-hover:scale-110">
-                        <i data-lucide="play" class="fill-white text-white ml-2 h-8 w-8"></i>
-                      </div>
-                   </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Manifesto -->
-        <section id="manifesto" class="relative flex items-center min-h-screen bg-carbon py-40 overflow-hidden">
-            <div class="absolute right-12 top-1/2 -translate-y-1/2 rotate-90 origin-center text-mist opacity-30 whitespace-nowrap hidden lg:block">
-                <span class="text-[11px] tracking-[0.32em] uppercase">Address | View | Architecture</span>
-            </div>
-            <div class="absolute bottom-12 left-12 text-mist opacity-30">
-                <span class="text-[11px] tracking-[0.32em] uppercase">01 / Manifesto</span>
-            </div>
-
-            <div class="max-w-4xl mx-auto px-6 lg:px-12 w-full space-y-12">
-                <div class="manifesto-item reveal">
-                    <p class="text-porcelain text-xl md:text-2xl lg:text-3xl tracking-[0.18em] uppercase font-light leading-snug">
-                        <span class="font-medium">Presença absoluta:</span> Rua Estados Unidos, um endereço que se impõe.
-                    </p>
-                </div>
-                <div class="manifesto-item reveal">
-                    <p class="text-porcelain text-xl md:text-2xl lg:text-3xl tracking-[0.18em] uppercase font-light leading-snug">
-                        <span class="font-medium">Horizonte particular:</span> vista irrestrita para o verde do Jardim Europa.
-                    </p>
-                </div>
-                <div class="manifesto-item reveal">
-                    <p class="text-porcelain text-xl md:text-2xl lg:text-3xl tracking-[0.18em] uppercase font-light leading-snug">
-                        <span class="font-medium">Precisão sem excessos:</span> projeto irreplicável by Triptyque.
-                    </p>
-                </div>
-                <p class="pt-12 text-lg md:text-xl text-mist italic tracking-wide reveal">
-                    Um equilíbrio raro entre lugar, perspectiva e forma.
-                </p>
-                <p class="text-porcelain uppercase tracking-[0.24em] font-medium reveal">
-                    Quando nada é acessório, tudo é definitivo.
-                </p>
-            </div>
-        </section>
-
-        <!-- Gallery -->
-        <section id="galeria" class="relative bg-porcelain text-carbon py-24 px-6 overflow-hidden">
-            <div class="absolute right-0 top-0 w-[30vw] opacity-[0.03] select-none pointer-events-none -translate-y-1/4 grayscale invert">
-                <img src="https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Logo_negativo_centra.svg" alt="702" class="w-full h-auto">
-            </div>
-            
-            <div class="max-w-7xl mx-auto relative z-10">
-                <header class="grid lg:grid-cols-2 gap-12 items-end mb-20">
-                    <div class="space-y-6 reveal">
-                        <p class="text-[10px] tracking-[0.48em] uppercase text-black/50">Curadoria Visual</p>
-                        <h2 class="text-3xl md:text-5xl font-light uppercase tracking-widest">Galeria</h2>
-                        <p class="text-black/70 leading-loose max-w-md">Lugar, perspectiva e forma em uma sequência visual pensada para apresentar o 702 Estados Unidos com presença, silêncio e precisão.</p>
-                    </div>
-                    <div class="h-px bg-black/20 w-full mb-4"></div>
-                </header>
-
-                <div class="grid grid-cols-6 gap-4">
-                    <template x-for="(item, i) in galleryData" :key="i">
-                        <div 
-                            @click="selectedGalleryIdx = i"
-                            class="relative overflow-hidden cursor-pointer group bg-carbon min-h-[440px] col-span-6 md:col-span-2 reveal"
-                        >
-                            <div 
-                                class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
-                                :style="'background-image: url(' + item.image + ')'"
-                            ></div>
-                            <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/80 opacity-90"></div>
-                            
-                            <div class="absolute top-6 right-6 text-[10px] tracking-widest text-white/60 font-medium" x-text="'0' + (i + 1)"></div>
-                            <div class="absolute inset-x-0 bottom-0 p-8 text-white">
-                                <div class="flex items-center gap-4 mb-4 opacity-70 group-hover:opacity-100 transition-opacity">
-                                    <span class="text-[9px] tracking-[0.38em] uppercase" x-text="item.eyebrow"></span>
-                                    <div class="h-px bg-white/40 flex-1 max-w-[80px]"></div>
-                                </div>
-                                <h3 class="text-xl md:text-2xl font-light uppercase tracking-widest leading-tight" x-text="item.title"></h3>
-                                <p class="text-xs text-white/50 mt-4 max-w-xs opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500" x-text="item.copy"></p>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
-
-            <!-- Gallery Modal -->
-            <div 
-                x-show="selectedGalleryIdx !== null"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/90 backdrop-blur-xl"
-                @click="selectedGalleryIdx = null"
-                x-cloak
-            >
-                <div 
-                    class="relative max-w-6xl w-full bg-carbon overflow-hidden shadow-2xl"
-                    @click.stop
-                >
-                    <button 
-                        @click="selectedGalleryIdx = null"
-                        class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full border border-white/20 bg-black/40 text-white hover:bg-white hover:text-black transition-colors"
-                    >
-                        <i data-lucide="x" class="h-5 w-5"></i>
-                    </button>
-
-                    <div 
-                        class="aspect-video bg-cover bg-center" 
-                        :style="'background-image: url(' + galleryData[selectedGalleryIdx || 0].image + ')'"
-                    ></div>
-                    
-                    <div class="p-8 md:p-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-end gap-8 text-white">
-                        <div>
-                            <p class="text-[10px] tracking-[0.38em] uppercase text-white/50 mb-4" x-text="galleryData[selectedGalleryIdx || 0].eyebrow"></p>
-                            <h3 class="text-3xl md:text-5xl font-light uppercase tracking-widest" x-text="galleryData[selectedGalleryIdx || 0].title"></h3>
-                            <p class="text-white/60 mt-6 max-w-xl leading-relaxed" x-text="galleryData[selectedGalleryIdx || 0].copy"></p>
-                        </div>
-                        
-                        <div class="flex gap-4">
-                            <button 
-                                @click="selectedGalleryIdx = (selectedGalleryIdx - 1 + galleryData.length) % galleryData.length"
-                                class="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 hover:bg-white hover:text-black transition-all"
-                            >
-                                <i data-lucide="chevron-left" class="h-5 w-5"></i>
-                            </button>
-                            <button 
-                                @click="selectedGalleryIdx = (selectedGalleryIdx + 1) % galleryData.length"
-                                class="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 hover:bg-white hover:text-black transition-all"
-                            >
-                                <i data-lucide="chevron-right" class="h-5 w-5"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Differentials List -->
-        <section id="diferenciais-list" class="bg-mist text-carbon py-40 px-6">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-32">
-                <div class="lg:sticky lg:top-32 h-fit space-y-8 reveal">
-                    <p class="text-[10px] tracking-[0.48em] uppercase text-black/40">Diferenciais</p>
-                    <h2 class="text-3xl md:text-5xl font-light uppercase tracking-widest leading-none">Presença <br>Absoluta.</h2>
-                    <p class="text-black/60 italic text-xl font-light">Presença absoluta é um endereço que se impõe.</p>
-                </div>
-
-                <div class="space-y-2">
-                    <template x-for="(feat, i) in features" :key="i">
-                        <div 
-                            class="grid grid-cols-[60px_1fr] gap-8 py-8 border-b border-black/10 group hover:border-black transition-colors reveal"
-                        >
-                            <span class="text-[10px] font-bold text-black/30 pt-1 group-hover:text-black" x-text="'0' + (i + 1)"></span>
-                            <p class="text-lg font-light leading-relaxed" x-text="feat"></p>
-                        </div>
-                    </template>
-                </div>
-            </div>
-        </section>
-
-        <!-- Leisure Section (Slider) -->
-        <section id="diferenciais" class="bg-carbon overflow-hidden">
-            <div class="py-32 px-6 text-center space-y-6 reveal">
-                <p class="text-[10px] tracking-[0.48em] uppercase text-mist">Lazer e Áreas Comuns</p>
-                <h2 class="text-3xl md:text-5xl font-light uppercase tracking-widest text-porcelain">At Home.</h2>
-            </div>
-
-            <div class="relative h-[70vh] min-h-[500px]">
-                <div class="absolute inset-0 flex transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]" :style="'transform: translateX(-' + (activeLeisureIdx * 100) + '%)'">
-                    <template x-for="(slide, i) in leisureSlides" :key="i">
-                        <div class="min-w-full h-full relative overflow-hidden">
-                            <div 
-                                class="absolute w-[80%] h-full bg-cover bg-center" 
-                                :style="'background-image: url(' + slide.image + ')'"
-                            ></div>
-                        </div>
-                    </template>
-                </div>
-
-                <div class="absolute inset-0 pointer-events-none">
-                    <div class="absolute right-0 top-0 w-1/2 h-full bg-carbon diagonal-clip-left"></div>
-                    <div class="absolute inset-y-0 right-0 w-[45%] flex flex-col justify-center px-12 md:px-24 text-right items-end pointer-events-auto">
-                        <div class="space-y-8 max-w-sm" :key="activeLeisureIdx">
-                            <p class="text-[10px] tracking-[0.42em] uppercase text-mist" x-text="leisureSlides[activeLeisureIdx].tag"></p>
-                            <div class="space-y-4">
-                                <h3 class="text-3xl md:text-4xl font-light uppercase tracking-widest text-porcelain" x-text="leisureSlides[activeLeisureIdx].title"></h3>
-                                <div class="w-14 h-px bg-white/30 ml-auto pt-8"></div>
-                            </div>
-                            <p class="text-mist leading-relaxed text-sm font-light" x-text="leisureSlides[activeLeisureIdx].desc"></p>
-                        </div>
-
-                        <div class="mt-12 flex items-center gap-8">
-                            <div class="text-[11px] tracking-[0.24em] text-white/50" x-text="'0' + (activeLeisureIdx + 1) + ' / 04'"></div>
-                            <div class="flex gap-4">
-                                <button 
-                                    @click="activeLeisureIdx = (activeLeisureIdx - 1 + 4) % 4"
-                                    class="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all"
-                                >
-                                    <i data-lucide="chevron-left" class="h-4 w-4"></i>
-                                </button>
-                                <button 
-                                    @click="activeLeisureIdx = (activeLeisureIdx + 1) % 4"
-                                    class="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all"
-                                >
-                                    <i data-lucide="chevron-right" class="h-4 w-4"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="py-24 text-center reveal">
-                <a href="#contato" class="inline-flex items-center justify-center min-h-[48px] px-10 rounded-full border border-porcelain text-porcelain uppercase text-[11px] font-medium tracking-[0.22em] transition-all hover:bg-porcelain hover:text-carbon">
-                    Quero Conhecer o 702 Estados Unidos
-                </a>
-            </div>
-        </section>
-
-        <!-- Plants -->
-        <section id="plantas" class="bg-mist text-carbon py-32 px-6">
-            <div class="max-w-7xl mx-auto">
-                <header class="grid lg:grid-cols-2 gap-12 items-end mb-20">
-                    <div class="space-y-6 reveal">
-                        <p class="text-[10px] tracking-[0.5em] uppercase text-black/50">Espaços e Dimensões</p>
-                        <h2 class="text-5xl md:text-6xl font-light uppercase tracking-widest">Plantas</h2>
-                        <p class="italic text-black/70 font-light text-lg">Escolha a melhor planta para se encaixar no seu dia a dia.</p>
-                    </div>
-                    <div class="h-px bg-black/20 w-full mb-4"></div>
-                </header>
-
-                <div class="flex flex-wrap gap-4 mb-20">
-                    <template x-for="(item, i) in plantsData" :key="i">
-                        <button
-                            @click="activePlantIdx = i"
-                            class="px-8 py-3.5 rounded-full text-[10px] font-bold uppercase tracking-[0.22em] border transition-all duration-500 reveal"
-                            :class="activePlantIdx === i ? 'bg-carbon text-porcelain border-carbon translate-y-[-2px]' : 'bg-transparent text-carbon border-carbon/30 hover:border-carbon'"
-                            x-text="item.category"
-                        ></button>
-                    </template>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-20 items-stretch bg-porcelain p-6 md:p-12 border border-black/10 reveal">
-                    <div class="relative aspect-square md:aspect-auto bg-[#f5f4f2] overflow-hidden border border-black/10 flex items-center justify-center p-12">
-                        <div class="absolute inset-0 opacity-10" style="background: radial-gradient(circle at 22% 18%,#fff,transparent 28%),linear-gradient(135deg,#e3e1df,#c6c6c4)"></div>
-                        <div class="absolute bottom-[-5%] right-[-5%] w-[30vw] opacity-[0.03] select-none pointer-events-none grayscale invert border border-white">
-                            <img src="https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Logo_negativo_centra.svg" alt="702" class="w-full h-auto">
-                        </div>
-                        
-                        <div class="relative z-10 w-full h-full flex items-center justify-center">
-                            <div 
-                                class="w-full h-full bg-contain bg-center bg-no-repeat filter drop-shadow-2xl transition-all duration-500" 
-                                :style="'background-image: url(' + plantsData[activePlantIdx].image + ')'"
-                            ></div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col justify-center space-y-12">
-                        <div class="space-y-6">
-                            <p class="text-[10px] tracking-[0.42em] uppercase text-black/40" x-text="'0' + (activePlantIdx + 1) + ' / 03'"></p>
-                            <h3 class="text-4xl md:text-5xl font-light uppercase tracking-widest" x-text="plantsData[activePlantIdx].title"></h3>
-                            <p class="text-black/60 leading-relaxed max-w-md" x-text="plantsData[activePlantIdx].description"></p>
-                        </div>
-
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                            <div class="space-y-3 pt-6 border-t border-black/10">
-                                <p class="text-[10px] uppercase tracking-widest text-black/50">Metragem</p>
-                                <p class="text-sm font-medium" x-text="plantsData[activePlantIdx].area"></p>
-                            </div>
-                            <div class="space-y-3 pt-6 border-t border-black/10">
-                                <p class="text-[10px] uppercase tracking-widest text-black/50">Diferencial</p>
-                                <p class="text-sm font-medium" x-text="plantsData[activePlantIdx].layout"></p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-4 pt-12">
-                            <button class="flex items-center gap-3 px-8 py-4 rounded-full border border-black/60 text-[10px] font-bold uppercase tracking-widest transition-all hover:bg-carbon hover:text-white">
-                                Ver Planta Completa
-                                <i data-lucide="chevron-right" class="h-3 w-3"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Construction Stage -->
-        <section class="bg-carbon text-porcelain py-40 px-6">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.4fr] gap-32 items-start">
-                <div class="lg:sticky lg:top-32 space-y-8 reveal">
-                    <p class="text-[10px] tracking-[0.48em] uppercase text-white/30">Estágio da Obra</p>
-                    <div class="space-y-2">
-                        <p class="text-7xl md:text-9xl font-light tracking-tighter leading-none">59,42<span class="text-3xl opacity-50 ml-1">%</span></p>
-                        <p class="text-[10px] uppercase tracking-[0.32em] text-white/50 pl-2 text-center md:text-left">Concluído</p>
-                    </div>
-                </div>
-
-                <div class="w-full space-y-10">
-                    <template x-for="(item, i) in constructionStatus" :key="i">
-                        <div class="space-y-4 reveal">
-                            <div class="flex justify-between items-end text-[10px] uppercase tracking-widest text-white/40">
-                                <span x-text="item.name"></span>
-                                <span x-text="item.p + '%'"></span>
-                            </div>
-                            <div class="h-1 bg-white/10 relative overflow-hidden">
-                                <div 
-                                    class="absolute inset-y-0 left-0 bg-porcelain transition-all duration-1000 ease-out"
-                                    :style="'width: ' + item.p + '%'"
-                                ></div>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
-        </section>
-
-        <!-- Location -->
-        <section id="localizacao" class="bg-carbon py-40 px-6 border-t border-white/5">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
-                <div class="space-y-8 reveal">
-                    <p class="text-xs text-white/40 uppercase tracking-[0.32em]">View | Architecture | <span class="text-white font-semibold">Address by Rua Estados Unidos</span></p>
-                    <h2 class="text-3xl md:text-4xl font-light uppercase tracking-widest leading-normal">Rua Estados Unidos, 702<br>Jardins, São Paulo / SP</h2>
-                    <div class="space-y-6 text-white/60 leading-loose text-lg font-light max-w-lg">
-                        <p>O único residencial da Rua Estados Unidos, localizado no melhor bairro de São Paulo, próximo aos melhores restaurantes, bares e lojas da cidade.</p>
-                        <p>A 5 minutos do Parque do Ibirapuera, possui uma vista deslumbrante para o Jardim Europa.</p>
-                    </div>
-                </div>
-
-                <div class="aspect-square bg-carbon-deep border border-white/10 relative overflow-hidden flex items-center justify-center reveal">
-                    <div 
-                        class="absolute inset-0 opacity-20 bg-cover bg-center grayscale" 
-                        style="background-image: url('https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20182046.png')"
-                    ></div>
-                    <div class="relative z-10 w-full h-full p-24">
-                        <svg viewBox="0 0 600 600" class="w-full h-full">
-                            <g stroke="white" strokeWidth="0.5" opacity="0.2" fill="none">
-                                <line x1="0" y1="120" x2="600" y2="100"/><line x1="0" y1="380" x2="600" y2="360"/>
-                                <line x1="120" y1="0" x2="100" y2="600"/><line x1="380" y1="0" x2="360" y2="600"/>
-                            </g>
-                            <line x1="40" y1="290" x2="560" y2="320" stroke="white" strokeWidth="2" opacity="0.8"/>
-                            <circle cx="300" cy="305" r="30" fill="none" stroke="white" strokeWidth="1" opacity="0.3" />
-                            <circle cx="300" cy="305" r="5" fill="white" />
-                            <text x="315" y="300" fill="white" style="font-size: 20px; font-weight: bold; letter-spacing: 0.1em;">702</text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contato" class="min-h-screen bg-carbon-deep text-porcelain overflow-hidden">
-            <div class="grid lg:grid-cols-2 min-h-screen">
-                <div class="relative min-h-[400px] lg:min-h-screen reveal">
-                    <div 
-                        class="absolute inset-0 bg-cover bg-left" 
-                        style="background-image: url('https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20183013.png')"
-                    ></div>
-                    <div class="absolute inset-0 bg-carbon-deep contact-diagonal-clip"></div>
-                    <div class="absolute top-12 left-12 writing-vertical-lr text-[11px] tracking-[0.32em] uppercase text-white/50 opacity-60">
-                        Address | View | Architecture
-                    </div>
-                </div>
-
-                <div class="flex flex-col justify-center p-8 md:p-24 lg:p-32 space-y-12 max-w-2xl mx-auto lg:mx-0 reveal">
-                    <div class="space-y-6">
-                        <p class="text-[10px] tracking-[0.48em] uppercase text-mist">Contato</p>
-                        <h2 class="text-4xl md:text-5xl font-light uppercase tracking-widest leading-snug">Preencha o formulário e prepare-se para viver uma nova etapa.</h2>
-                    </div>
-
-                    <div x-show="!formSubmitted">
-                        <form @submit.prevent="formSubmitted = true" class="space-y-8">
-                            <div class="space-y-2 group border-b border-white/20 focus-within:border-white transition-all py-4">
-                                <label class="text-[10px] tracking-widest uppercase text-white/40 block">Seu nome</label>
-                                <input type="text" required placeholder="Nome completo" class="w-full bg-transparent border-none outline-none text-lg font-light placeholder:text-white/20 text-white">
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-8">
-                                <div class="space-y-2 group border-b border-white/20 focus-within:border-white transition-all py-4">
-                                    <label class="text-[10px] tracking-widest uppercase text-white/40 block">E-mail</label>
-                                    <input type="email" required placeholder="seu@email.com" class="w-full bg-transparent border-none outline-none text-lg font-light placeholder:text-white/20 text-white">
-                                </div>
-                                <div class="space-y-2 group border-b border-white/20 focus-within:border-white transition-all py-4">
-                                    <label class="text-[10px] tracking-widest uppercase text-white/40 block">Telefone</label>
-                                    <input type="tel" required placeholder="(11) 99999-9999" class="w-full bg-transparent border-none outline-none text-lg font-light placeholder:text-white/20 text-white">
-                                </div>
-                            </div>
-                            
-                            <div class="space-y-4">
-                                <p class="text-[10px] tracking-widest uppercase text-white/40">Como prefere o contato?</p>
-                                <div class="flex flex-wrap gap-8">
-                                    <template x-for="method in ['WhatsApp', 'Telefone', 'E-mail']">
-                                        <label class="flex items-center gap-3 cursor-pointer group">
-                                            <input type="radio" name="method" :value="method" class="sr-only" x-model="contactMethod">
-                                            <span 
-                                                class="text-xs uppercase tracking-widest transition-all" 
-                                                :class="contactMethod === method ? 'text-white border-b border-white' : 'text-white/50 border-b border-transparent group-hover:text-white'" 
-                                                x-text="method"
-                                            ></span>
-                                        </label>
-                                    </template>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="w-full md:w-auto px-12 py-4 rounded-full border border-white/30 text-white uppercase text-[11px] font-bold tracking-[0.24em] transition-all hover:bg-white hover:text-black flex items-center justify-center gap-4 group">
-                                Enviar Interesse
-                                <i data-lucide="send" class="h-4 w-4 transition-transform group-hover:translate-x-1"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div x-show="formSubmitted" x-cloak class="space-y-6 pt-12">
-                        <h3 class="text-6xl font-light uppercase tracking-[0.2em] text-porcelain">Obrigado.</h3>
-                        <p class="text-xl text-mist font-light leading-relaxed">Sua manifestação de interesse foi registrada com precisão.<br>Em breve um de nossos consultores entrará em contato.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-[#0e0e0c] text-mist py-24 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto space-y-24">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-16">
-                <div class="space-y-8">
-                    <div class="space-y-2">
-                        <p class="text-porcelain font-semibold uppercase tracking-[0.24em] text-sm">702 Estados Unidos</p>
-                        <p class="text-[10px] uppercase tracking-[0.32em] text-white/30">Address | View | Architecture</p>
-                    </div>
-                    <p class="italic text-sm leading-relaxed opacity-70">Quando nada é supérfluo, tudo é definitivo.</p>
-                </div>
-
-                <div class="space-y-6">
-                    <p class="text-porcelain font-semibold uppercase tracking-widest text-xs">Acesso</p>
-                    <ul class="space-y-3 text-sm">
-                        <li>Rua Estados Unidos, 702</li>
-                        <li>Jardins · São Paulo / SP</li>
-                    </ul>
-                </div>
-
-                <div class="space-y-6">
-                    <p class="text-porcelain font-semibold uppercase tracking-widest text-xs">Interação</p>
-                    <ul class="space-y-3 text-sm">
-                        <li>+55 11 0000-0000</li>
-                        <li>contato@702estadosunidos.com.br</li>
-                    </ul>
-                </div>
-
-                <div class="space-y-6">
-                    <p class="text-porcelain font-semibold uppercase tracking-widest text-xs">Incorporação</p>
-                    <div class="flex gap-4">
-                        <div class="px-6 py-3 border border-white/10 text-[9px] tracking-widest text-white/40 uppercase">Sequoia</div>
-                        <div class="px-6 py-3 border border-white/10 text-[9px] tracking-widest text-white/40 uppercase">BSP</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-                <p class="text-[9px] tracking-wide text-white/30 max-w-3xl leading-loose">
-                    Imagens meramente ilustrativas. Sujeito a alterações sem aviso prévio. Memorial de incorporação registrado no Cartório de Registro de Imóveis. CRECI · Sequoia + BSP Empreendimentos Imobiliários.
-                </p>
-                <div class="flex gap-12 shrink-0">
-                    <a href="#" class="flex items-center gap-2 text-[10px] uppercase tracking-widest hover:text-white transition-colors">
-                        <i data-lucide="instagram" class="h-3.5 w-3.5"></i>
-                        Instagram
-                    </a>
-                    <a href="#" class="flex items-center gap-2 text-[10px] uppercase tracking-widest hover:text-white transition-colors">
-                        <i data-lucide="linkedin" class="h-3.5 w-3.5"></i>
-                        LinkedIn
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        function app() {
-            return {
-                navVisible: false,
-                isMobileMenuOpen: false,
-                activeSection: 'hero',
-                activeLeisureIdx: 0,
-                activePlantIdx: 0,
-                selectedGalleryIdx: null,
-                formSubmitted: false,
-                contactMethod: '',
-                navLinks: [
-                    { id: 'hero', label: 'Home' },
-                    { id: 'manifesto', label: '702 Estados Unidos' },
-                    { id: 'galeria', label: 'Galeria' },
-                    { id: 'diferenciais', label: 'Lazer' },
-                    { id: 'plantas', label: 'Plantas' },
-                    { id: 'contato', label: 'Contato' },
-                ],
-                galleryData: [
-                    {
-                        title: "Rua Estados Unidos",
-                        eyebrow: "ADDRESS",
-                        copy: "Presença absoluta em um endereço que se impõe.",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180620.png"
-                    },
-                    {
-                        title: "View",
-                        eyebrow: "VIEW BY JARDIM EUROPA",
-                        copy: "Horizonte particular para o verde do Jardim Europa.",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180559.png"
-                    },
-                    {
-                        title: "Architecture",
-                        eyebrow: "ARCHITECTURE BY TRIPTYQUE",
-                        copy: "Precisão sem excessos em um projeto irreplicável.",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180535.png"
-                    }
-                ],
-                plantsData: [
-                    {
-                        category: "Apartamentos tipo",
-                        title: "Apartamentos tipo",
-                        description: "Plantas de 50 m² e 56 m² com 1 dormitório, e 70 m² com 2 dormitórios.",
-                        area: "50 m², 56 m² e 70 m²",
-                        layout: "1 e 2 dormitórios",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20145917.png"
-                    },
-                    {
-                        category: "Apartamentos Garden",
-                        title: "Apartamentos Garden",
-                        description: "Gardens com metragens de 70 m², 99 m², 117 m², 135 m² e 147 m².",
-                        area: "70 m² a 147 m²",
-                        layout: "Gardens",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20145917.png"
-                    },
-                    {
-                        category: "Penthouses",
-                        title: "Penthouses",
-                        description: "Penthouses de 143 m² e 165 m² com 2 suítes.",
-                        area: "143 m² e 165 m²",
-                        layout: "2 suítes",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20145917.png"
-                    }
-                ],
-                leisureSlides: [
-                    { 
-                        title: "Fitness", 
-                        desc: "Intensidade e foco em espaços que inspiram superação.", 
-                        tag: "01 / Workout at Home",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180612.png"
-                    },
-                    { 
-                        title: "Piscina", 
-                        desc: "Momentos de pausa em cenários criados para desacelerar o tempo.", 
-                        tag: "02 / Wellness at Home",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
-                    },
-                    { 
-                        title: "Espaço Gourmet", 
-                        desc: "Encontros que merecem o tempo certo e o lugar exato.", 
-                        tag: "03 / Gourmet at Home",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
-                    },
-                    { 
-                        title: "Solarium", 
-                        desc: "O entardecer ganha nova dimensão quando o Jardim Europa expande seus horizontes.", 
-                        tag: "04 / Sunshine by Jardim Europa",
-                        image: "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
-                    },
-                ],
-                features: [
-                    "Portaria blindada com clausura para pedestres e veículos",
-                    "Gerador para áreas comuns",
-                    "Aquecimento central a gás",
-                    "Carregadores elétricos nos subsolos",
-                    "Bicicletário decorado com bomba de pressão",
-                    "Reúso de água para irrigação",
-                    "Previsão de aquecimento solar na cobertura",
-                    "Infraestrutura para automação residencial"
-                ],
-                constructionStatus: [
-                    { name: "Escavação", p: 100 },
-                    { name: "Fundação", p: 100 },
-                    { name: "Estrutura", p: 97 },
-                    { name: "Alvenaria", p: 78 },
-                    { name: "Elétrica", p: 48 },
-                    { name: "Hidráulica", p: 47 },
-                    { name: "Acabamento", p: 19 },
-                    { name: "Fachada", p: 0 },
-                ],
-                initApp() {
-                    window.addEventListener('scroll', () => {
-                        this.navVisible = window.scrollY > 80;
-                        
-                        const sections = ['hero', 'manifesto', 'galeria', 'diferenciais', 'plantas', 'contato'];
-                        const scrollPos = window.scrollY + 100;
-                        
-                        for (const section of sections) {
-                            const el = document.getElementById(section);
-                            if (el && el.offsetTop <= scrollPos) {
-                                this.activeSection = section;
-                            }
-                        }
-                    });
-
-                    // GSAP Scroll Animations
-                    gsap.registerPlugin(ScrollTrigger);
-
-                    gsap.utils.toArray('.reveal').forEach(el => {
-                        gsap.from(el, {
-                            scrollTrigger: {
-                                trigger: el,
-                                start: 'top 85%',
-                                once: true
-                            },
-                            y: 30,
-                            opacity: 0,
-                            duration: 1,
-                            ease: 'power2.out'
-                        });
-                    });
-
-                    // Hero background parallax
-                    gsap.to('#hero-bg', {
-                        scrollTrigger: {
-                            trigger: '#hero',
-                            start: 'top top',
-                            end: 'bottom top',
-                            scrub: true
-                        },
-                        y: 150,
-                        scale: 1.15
-                    });
-
-                    lucide.createIcons();
-                }
-            }
+<body>
+  <script type="application/json" id="site-data">
+    {
+      "brandLogo": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Logo_negativo_centra.svg",
+      "gallery": [
+        {
+          "title": "Rua Estados Unidos",
+          "eyebrow": "ADDRESS",
+          "copy": "Presença absoluta em um endereço que se impõe.",
+          "type": "facade",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180620.png",
+          "alt": "Fachada do 702 Estados Unidos ao entardecer"
+        },
+        {
+          "title": "View",
+          "eyebrow": "VIEW BY JARDIM EUROPA",
+          "copy": "Horizonte particular para o verde do Jardim Europa.",
+          "type": "view",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180559.png",
+          "alt": "Vista para o Jardim Europa ao entardecer"
+        },
+        {
+          "title": "Architecture",
+          "eyebrow": "ARCHITECTURE BY TRIPTYQUE",
+          "copy": "Precisão sem excessos em um projeto irreplicável.",
+          "type": "architecture",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180535.png",
+          "alt": "Detalhe arquitetônico da fachada verde"
         }
-    </script>
+      ],
+      "leisure": [
+        {
+          "title": "Fitness",
+          "desc": "Intensidade e foco em espaços que inspiram superação.",
+          "tag": "01 / Workout at Home",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180612.png"
+        },
+        {
+          "title": "Piscina",
+          "desc": "Momentos de pausa em cenários criados para desacelerar o tempo.",
+          "tag": "02 / Wellness at Home",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
+        },
+        {
+          "title": "Espaço Gourmet",
+          "desc": "Encontros que merecem o tempo certo e o lugar exato.",
+          "tag": "03 / Gourmet at Home",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
+        },
+        {
+          "title": "Solarium",
+          "desc": "O entardecer ganha nova dimensão quando o Jardim Europa expande seus horizontes.",
+          "tag": "04 / Sunshine by Jardim Europa",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
+        }
+      ],
+      "plants": [
+        {
+          "category": "Apartamentos tipo",
+          "title": "Apartamentos tipo",
+          "description": "Plantas de 50 m² e 56 m² com 1 dormitório, e 70 m² com 2 dormitórios.",
+          "area": "50 m², 56 m² e 70 m²",
+          "layout": "1 e 2 dormitórios",
+          "type": "Tipo",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20145917.png",
+          "alt": "Planta de apartamento tipo"
+        },
+        {
+          "category": "Apartamentos Garden",
+          "title": "Apartamentos Garden",
+          "description": "Gardens com metragens de 70 m², 99 m², 117 m², 135 m² e 147 m².",
+          "area": "70 m² a 147 m²",
+          "layout": "Gardens",
+          "type": "Garden",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20145917.png",
+          "alt": "Planta de apartamento Garden"
+        },
+        {
+          "category": "Penthouses",
+          "title": "Penthouses",
+          "description": "Penthouses de 143 m² e 165 m² com 2 suítes.",
+          "area": "143 m² e 165 m²",
+          "layout": "2 suítes",
+          "type": "Penthouse",
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20145917.png",
+          "alt": "Planta de penthouse"
+        }
+      ],
+      "features": [
+        "Portaria blindada com clausura para pedestres e veículos",
+        "Gerador para áreas comuns",
+        "Aquecimento central a gás",
+        "Carregadores elétricos nos subsolos",
+        "Bicicletário decorado com bomba de pressão",
+        "Reúso de água para irrigação",
+        "Previsão de aquecimento solar na cobertura",
+        "Infraestrutura para automação residencial"
+      ],
+      "progress": [
+        { "name": "Escavação", "p": 100 },
+        { "name": "Fundação", "p": 100 },
+        { "name": "Estrutura", "p": 97 },
+        { "name": "Alvenaria", "p": 78 },
+        { "name": "Elétrica", "p": 48 },
+        { "name": "Hidráulica", "p": 47 },
+        { "name": "Acabamento", "p": 19 },
+        { "name": "Fachada", "p": 0 }
+      ]
+    }
+  </script>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="#hero">702 Estados Unidos</a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+        <a href="#hero" data-section="hero">Home</a>
+        <a href="#manifesto" data-section="manifesto">702 Estados Unidos</a>
+        <a href="#galeria" data-section="galeria">Galeria</a>
+        <a href="#diferenciais" data-section="diferenciais">Lazer</a>
+        <a href="#plantas" data-section="plantas">Plantas</a>
+        <a href="#contato" data-section="contato">Contato</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Navegação mobile">
+      <a href="#hero">Home</a>
+      <a href="#manifesto">702 Estados Unidos</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#diferenciais">Lazer</a>
+      <a href="#plantas">Plantas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="container hero-content">
+        <p class="hero-kicker">ADDRESS | VIEW | ARCHITECTURE</p>
+        <div class="brand-logo-large"><img data-brand-logo alt="702" /></div>
+        <div class="hero-bottom">
+          <div class="hero-copy">
+            <p>Quando nada é supérfluo, tudo é definitivo.</p>
+            <p>50m² a 165m² · 1 e 2 dorms · 1 vaga</p>
+            <p>O lifestyle dos Jardins e a essência do Jardim Europa juntos em um endereço.</p>
+            <p>Rua Estados Unidos, 702 - Jardins, São Paulo / SP</p>
+          </div>
+          <a href="#contato" class="btn btn-light">Tenho Interesse</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="film">
+      <div class="container">
+        <div class="section-head-center reveal">
+          <p class="overline overline-soft">Filme da Campanha</p>
+          <h2 class="heading-md">702 Estados Unidos</h2>
+        </div>
+        <div class="video-card reveal" data-delay="1" role="button" aria-label="Reproduzir filme da campanha">
+          <div class="video-card-bg"></div>
+          <div class="video-overlay">
+            <div class="play-circle">
+              <svg class="icon icon-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto" id="manifesto">
+      <div class="manifesto-rail">Address | View | Architecture</div>
+      <div class="manifesto-number">01 / Manifesto</div>
+      <div class="container manifesto-inner">
+        <p class="manifesto-line reveal"><strong>Presença absoluta:</strong> Rua Estados Unidos, um endereço que se impõe.</p>
+        <p class="manifesto-line reveal" data-delay="1"><strong>Horizonte particular:</strong> vista irrestrita para o verde do Jardim Europa.</p>
+        <p class="manifesto-line reveal" data-delay="2"><strong>Precisão sem excessos:</strong> projeto irreplicável by Triptyque.</p>
+        <p class="manifesto-sub reveal" data-delay="3">Um equilíbrio raro entre lugar, perspectiva e forma.</p>
+        <p class="manifesto-end reveal" data-delay="4">Quando nada é acessório, tudo é definitivo.</p>
+      </div>
+    </section>
+
+    <section class="gallery" id="galeria">
+      <img class="watermark-logo" data-brand-logo alt="" aria-hidden="true" />
+      <div class="container">
+        <header class="split-head reveal">
+          <div>
+            <p class="overline" style="color: rgba(0,0,0,.5);">Curadoria Visual</p>
+            <h2 class="heading-lg" style="color: var(--carbon); margin-top: 24px;">Galeria</h2>
+            <p>Lugar, perspectiva e forma em uma sequência visual pensada para apresentar o 702 Estados Unidos com presença, silêncio e precisão.</p>
+          </div>
+          <div class="rule"></div>
+        </header>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <section class="features" id="diferenciais-list">
+      <div class="container features-grid">
+        <div class="sticky-block reveal">
+          <p class="overline" style="color: rgba(0,0,0,.4);">Diferenciais</p>
+          <h2 class="heading-lg" style="color: var(--carbon); margin-top: 32px;">Presença <br>Absoluta.</h2>
+          <p>Presença absoluta é um endereço que se impõe.</p>
+        </div>
+        <div class="feature-list" id="featureList"></div>
+      </div>
+    </section>
+
+    <section class="leisure" id="diferenciais">
+      <div class="leisure-intro reveal">
+        <p class="overline" style="color: var(--mist);">Lazer e Áreas Comuns</p>
+        <h2 class="heading-md" style="margin-top: 24px;">At Home.</h2>
+      </div>
+      <div class="leisure-stage">
+        <div class="leisure-track" id="leisureTrack"></div>
+        <div class="diagonal-cover"></div>
+        <div class="leisure-info">
+          <div class="leisure-copy" id="leisureCopy"></div>
+          <div class="leisure-controls">
+            <div class="leisure-counter" id="leisureCounter">01 / 04</div>
+            <div>
+              <button class="icon-btn" id="leisurePrev" type="button" aria-label="Slide anterior">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+              </button>
+              <button class="icon-btn" id="leisureNext" type="button" aria-label="Próximo slide">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="leisure-cta">
+        <a href="#contato" class="btn btn-outline-light">Quero Conhecer o 702 Estados Unidos</a>
+      </div>
+    </section>
+
+    <section class="plants" id="plantas">
+      <div class="container">
+        <header class="split-head reveal">
+          <div>
+            <p class="overline" style="color: rgba(0,0,0,.5);">Espaços e Dimensões</p>
+            <h2 class="heading-lg" style="color: var(--carbon); margin-top: 24px;">Plantas</h2>
+            <p style="font-style: italic; font-size: 1.15rem;">Escolha a melhor planta para se encaixar no seu dia a dia.</p>
+          </div>
+          <div class="rule"></div>
+        </header>
+        <div class="tabs" id="plantTabs"></div>
+        <div class="plant-card reveal">
+          <div class="plant-visual">
+            <img class="plant-logo-mark" data-brand-logo alt="" aria-hidden="true" />
+            <div class="plant-image" id="plantImage"></div>
+          </div>
+          <div class="plant-content">
+            <div class="plant-text" id="plantText"></div>
+            <div class="plant-specs">
+              <div class="spec"><p>Metragem</p><p id="plantArea"></p></div>
+              <div class="spec"><p>Diferencial</p><p id="plantLayout"></p></div>
+            </div>
+            <div>
+              <button class="btn btn-outline-dark" type="button">Ver Planta Completa <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="progress" id="obra">
+      <div class="container progress-grid">
+        <div class="sticky-block reveal">
+          <p class="overline overline-soft">Estágio da Obra</p>
+          <p class="progress-number">59,42<span>%</span></p>
+          <p class="progress-label">Concluído</p>
+        </div>
+        <div class="progress-list" id="progressList"></div>
+      </div>
+    </section>
+
+    <section class="location" id="localizacao">
+      <div class="container location-grid">
+        <div class="location-copy reveal">
+          <p class="overline" style="color: rgba(255,255,255,.4); letter-spacing: .32em;">View | Architecture | <strong style="color:#fff;">Address by Rua Estados Unidos</strong></p>
+          <h2 class="heading-md">Rua Estados Unidos, 702<br>Jardins, São Paulo / SP</h2>
+          <div class="body">
+            <p>O único residencial da Rua Estados Unidos, localizado no melhor bairro de São Paulo, próximo aos melhores restaurantes, bares e lojas da cidade.</p>
+            <p>A 5 minutos do Parque do Ibirapuera, possui uma vista deslumbrante para o Jardim Europa.</p>
+          </div>
+        </div>
+        <div class="map-card reveal" data-delay="1">
+          <div class="map-bg"></div>
+          <svg class="map-svg" viewBox="0 0 600 600" aria-label="Mapa estilizado da localização">
+            <g stroke="white" stroke-width="0.5" opacity="0.2" fill="none">
+              <line x1="0" y1="120" x2="600" y2="100"></line><line x1="0" y1="380" x2="600" y2="360"></line>
+              <line x1="120" y1="0" x2="100" y2="600"></line><line x1="380" y1="0" x2="360" y2="600"></line>
+            </g>
+            <line x1="40" y1="290" x2="560" y2="320" stroke="white" stroke-width="2" opacity="0.8"></line>
+            <circle cx="300" cy="305" r="30" fill="none" stroke="white" stroke-width="1" opacity="0.3"></circle>
+            <circle cx="300" cy="305" r="5" fill="white"></circle>
+            <text x="315" y="300" fill="white">702</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="contact-grid">
+        <div class="contact-image">
+          <div class="contact-image-bg"></div>
+          <div class="vertical-label">Address | View | Architecture</div>
+        </div>
+        <div class="contact-content">
+          <div class="reveal">
+            <p class="overline" style="color: var(--mist);">Contato</p>
+            <h2 class="heading-md" style="margin-top: 24px;">Preencha o formulário e prepare-se para viver uma nova etapa.</h2>
+          </div>
+          <form class="form reveal" data-delay="1" id="contactForm">
+            <div class="field">
+              <label for="name">Seu nome</label>
+              <input id="name" name="name" type="text" required placeholder="Nome completo">
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" required placeholder="seu@email.com">
+              </div>
+              <div class="field">
+                <label for="phone">Telefone</label>
+                <input id="phone" name="phone" type="tel" required placeholder="(11) 99999-9999">
+              </div>
+            </div>
+            <div class="radio-group">
+              <p>Como prefere o contato?</p>
+              <div class="radio-options">
+                <label><input type="radio" name="method" value="WhatsApp"><span>WhatsApp</span></label>
+                <label><input type="radio" name="method" value="Telefone"><span>Telefone</span></label>
+                <label><input type="radio" name="method" value="E-mail"><span>E-mail</span></label>
+              </div>
+            </div>
+            <button class="btn submit-btn" type="submit">Enviar Interesse <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg></button>
+          </form>
+          <div class="success" id="successMessage">
+            <h3>Obrigado.</h3>
+            <p>Sua manifestação de interesse foi registrada com precisão.<br>Em breve um de nossos consultores entrará em contato.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p>702 Estados Unidos</p>
+          <p>Address | View | Architecture</p>
+          <p>Quando nada é supérfluo, tudo é definitivo.</p>
+        </div>
+        <div>
+          <h4>Acesso</h4>
+          <ul><li>Rua Estados Unidos, 702</li><li>Jardins · São Paulo / SP</li></ul>
+        </div>
+        <div>
+          <h4>Interação</h4>
+          <ul><li>+55 11 0000-0000</li><li>contato@702estadosunidos.com.br</li></ul>
+        </div>
+        <div>
+          <h4>Incorporação</h4>
+          <div class="partners"><div class="partner">Sequoia</div><div class="partner">BSP</div></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="legal">Imagens meramente ilustrativas. Sujeito a alterações sem aviso prévio. Memorial de incorporação registrado no Cartório de Registro de Imóveis. CRECI · Sequoia + BSP Empreendimentos Imobiliários.</p>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"></circle></svg> Instagram</a>
+          <a href="#" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="galleryModal" aria-hidden="true" role="dialog" aria-label="Imagem da galeria">
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Fechar galeria">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18"></path><path d="M6 6l12 12"></path></svg>
+      </button>
+      <div class="modal-image" id="modalImage"></div>
+      <div class="modal-footer">
+        <div>
+          <p class="overline" id="modalEyebrow" style="color: rgba(255,255,255,.5); margin: 0 0 16px;"></p>
+          <h3 id="modalTitle"></h3>
+          <p id="modalCopy"></p>
+        </div>
+        <div class="modal-controls">
+          <button class="icon-btn" id="modalPrev" type="button" aria-label="Imagem anterior"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+          <button class="icon-btn" id="modalNext" type="button" aria-label="Próxima imagem"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const data = JSON.parse(document.getElementById('site-data').textContent);
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+      const pad = (num) => String(num).padStart(2, '0');
+
+      $$('[data-brand-logo]').forEach((img) => {
+        img.src = data.brandLogo;
+        img.addEventListener('error', () => { img.style.display = 'none'; });
+      });
+
+      const header = $('#siteHeader');
+      const heroBg = $('#heroBg');
+      const navLinks = $$('#navLinks a');
+      const sections = ['hero', 'manifesto', 'galeria', 'diferenciais', 'plantas', 'contato'];
+
+      function updateScrollState() {
+        const y = window.scrollY || window.pageYOffset;
+        header.classList.toggle('is-visible', y > 80);
+        if (heroBg) heroBg.style.transform = `translateY(${Math.min(y * 0.18, 150)}px) scale(1.05)`;
+        const scrollPos = y + 110;
+        let active = 'hero';
+        sections.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el && el.offsetTop <= scrollPos) active = id;
+        });
+        navLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.section === active));
+      }
+      window.addEventListener('scroll', updateScrollState, { passive: true });
+      updateScrollState();
+
+      const menuToggle = $('#menuToggle');
+      const mobileMenu = $('#mobileMenu');
+      menuToggle.addEventListener('click', () => {
+        const open = !menuToggle.classList.contains('is-open');
+        menuToggle.classList.toggle('is-open', open);
+        mobileMenu.classList.toggle('is-open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+      });
+      $$('#mobileMenu a').forEach((link) => link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-open');
+        mobileMenu.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }));
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      $$('.reveal').forEach((el) => revealObserver.observe(el));
+
+      const galleryGrid = $('#galleryGrid');
+      data.gallery.forEach((item, index) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'gallery-card reveal';
+        card.setAttribute('aria-label', `Abrir imagem: ${item.title}`);
+        card.innerHTML = `
+          <div class="gallery-card-bg" style="background-image:url('${item.image.replace(/'/g, '%27')}')"></div>
+          <div class="gallery-index">${pad(index + 1)}</div>
+          <div class="gallery-card-copy">
+            <div class="eyebrow-row"><span>${item.eyebrow}</span><i></i></div>
+            <h3>${item.title}</h3>
+            <p>${item.copy}</p>
+          </div>`;
+        card.addEventListener('click', () => openModal(index));
+        galleryGrid.appendChild(card);
+        revealObserver.observe(card);
+      });
+
+      let modalIndex = 0;
+      const modal = $('#galleryModal');
+      function renderModal() {
+        const item = data.gallery[modalIndex];
+        $('#modalImage').style.backgroundImage = `url('${item.image.replace(/'/g, '%27')}')`;
+        $('#modalEyebrow').textContent = item.eyebrow;
+        $('#modalTitle').textContent = item.title;
+        $('#modalCopy').textContent = item.copy;
+      }
+      function openModal(index) {
+        modalIndex = index;
+        renderModal();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function moveModal(delta) {
+        modalIndex = (modalIndex + delta + data.gallery.length) % data.gallery.length;
+        renderModal();
+      }
+      $('#modalClose').addEventListener('click', closeModal);
+      $('#modalPrev').addEventListener('click', (e) => { e.stopPropagation(); moveModal(-1); });
+      $('#modalNext').addEventListener('click', (e) => { e.stopPropagation(); moveModal(1); });
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') moveModal(-1);
+        if (e.key === 'ArrowRight') moveModal(1);
+      });
+
+      const featureList = $('#featureList');
+      data.features.forEach((feature, index) => {
+        const item = document.createElement('div');
+        item.className = 'feature-item reveal';
+        item.dataset.delay = String(Math.min(index, 4));
+        item.innerHTML = `<span>0${index + 1}</span><p>${feature}</p>`;
+        featureList.appendChild(item);
+        revealObserver.observe(item);
+      });
+
+      let leisureIndex = 0;
+      const leisureTrack = $('#leisureTrack');
+      const leisureCopy = $('#leisureCopy');
+      const leisureCounter = $('#leisureCounter');
+      data.leisure.forEach((slide) => {
+        const node = document.createElement('div');
+        node.className = 'leisure-slide';
+        node.innerHTML = `<div class="leisure-image" style="background-image:url('${slide.image.replace(/'/g, '%27')}')"></div>`;
+        leisureTrack.appendChild(node);
+      });
+      function renderLeisure(nextIndex, animate = true) {
+        leisureIndex = (nextIndex + data.leisure.length) % data.leisure.length;
+        const slide = data.leisure[leisureIndex];
+        leisureTrack.style.transform = `translateX(-${leisureIndex * 100}%)`;
+        leisureCounter.textContent = `${pad(leisureIndex + 1)} / ${pad(data.leisure.length)}`;
+        if (animate) leisureCopy.classList.add('is-changing');
+        window.setTimeout(() => {
+          leisureCopy.innerHTML = `
+            <p class="overline" style="color: var(--mist); letter-spacing:.42em;">${slide.tag}</p>
+            <h3>${slide.title}</h3>
+            <div class="line"></div>
+            <p>${slide.desc}</p>`;
+          leisureCopy.classList.remove('is-changing');
+        }, animate ? 180 : 0);
+      }
+      $('#leisurePrev').addEventListener('click', () => renderLeisure(leisureIndex - 1));
+      $('#leisureNext').addEventListener('click', () => renderLeisure(leisureIndex + 1));
+      renderLeisure(0, false);
+
+      let plantIndex = 0;
+      const plantTabs = $('#plantTabs');
+      const plantImage = $('#plantImage');
+      const plantText = $('#plantText');
+      const plantArea = $('#plantArea');
+      const plantLayout = $('#plantLayout');
+      data.plants.forEach((plant, index) => {
+        const tab = document.createElement('button');
+        tab.type = 'button';
+        tab.className = 'tab';
+        tab.textContent = plant.category;
+        tab.addEventListener('click', () => renderPlant(index));
+        plantTabs.appendChild(tab);
+      });
+      function renderPlant(index) {
+        plantIndex = index;
+        const plant = data.plants[plantIndex];
+        $$('.tab', plantTabs).forEach((tab, i) => tab.classList.toggle('is-active', i === plantIndex));
+        plantImage.classList.add('is-changing');
+        plantText.classList.add('is-changing');
+        window.setTimeout(() => {
+          plantImage.style.backgroundImage = `url('${plant.image.replace(/'/g, '%27')}')`;
+          plantText.innerHTML = `
+            <p class="overline" style="color: rgba(0,0,0,.4); letter-spacing:.42em;">${pad(plantIndex + 1)} / ${pad(data.plants.length)}</p>
+            <h3>${plant.title}</h3>
+            <p>${plant.description}</p>`;
+          plantArea.textContent = plant.area;
+          plantLayout.textContent = plant.layout;
+          plantImage.classList.remove('is-changing');
+          plantText.classList.remove('is-changing');
+        }, 180);
+      }
+      renderPlant(0);
+
+      const progressList = $('#progressList');
+      data.progress.forEach((item, index) => {
+        const row = document.createElement('div');
+        row.className = 'progress-row reveal';
+        row.innerHTML = `
+          <div class="progress-row-head"><span>${item.name}</span><span>${item.p}%</span></div>
+          <div class="bar"><span data-progress="${item.p}"></span></div>`;
+        progressList.appendChild(row);
+        revealObserver.observe(row);
+      });
+      const progressObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            $$('[data-progress]', entry.target).forEach((bar) => { bar.style.width = `${bar.dataset.progress}%`; });
+            progressObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.35 });
+      $$('.progress-row').forEach((row) => progressObserver.observe(row));
+
+      $('#contactForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        $('#contato').classList.add('is-submitted');
+      });
+    })();
+  </script>
 </body>
 </html>
