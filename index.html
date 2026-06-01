@@ -170,6 +170,7 @@
     .leisure-track { position: absolute; inset: 0; display: flex; transition: transform .7s var(--ease-editorial); }
     .leisure-slide { min-width: 100%; height: 100%; position: relative; overflow: hidden; }
     .leisure-image { position: absolute; width: 80%; height: 100%; background-size: cover; background-position: center; }
+    .leisure-caption { position: absolute; left: 28px; bottom: 24px; z-index: 2; padding: 6px 8px; background: rgba(14,14,12,.42); color: rgba(255,255,255,.82); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(8px); font-size: 7px; letter-spacing: .14em; text-transform: uppercase; }
     .diagonal-cover { position: absolute; right: 0; top: 0; width: 50%; height: 100%; background: var(--porcelain); clip-path: polygon(49.69% 0, 100% 0, 100% 100%, 0 100%); pointer-events: none; }
     .leisure-info { position: absolute; inset: 0 0 0 auto; width: 45%; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; padding: 0 clamp(48px, 7vw, 96px); text-align: right; }
     .leisure-copy { max-width: 360px; transition: opacity .32s, transform .32s; }
@@ -287,8 +288,15 @@
     .footer-brand p:nth-child(2) { margin: 0 0 32px; color: rgba(255,255,255,.3); font-size: 10px; letter-spacing: .32em; text-transform: uppercase; }
     .footer-brand p:nth-child(3) { font-style: italic; font-size: 14px; line-height: 1.7; opacity: .72; }
     .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 14px; }
-    .partners { display: flex; gap: 16px; flex-wrap: wrap; }
-    .partner { padding: 12px 24px; border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.4); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+    .footer-logos { display: grid; grid-column: span 2; grid-template-columns: minmax(180px, auto) minmax(0, 1fr); gap: 48px; align-items: end; justify-items: start; }
+    .footer-logo-group { display: grid; gap: 18px; }
+    .footer-logo-label { color: var(--porcelain); font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+    .footer-logo-row { display: flex; align-items: flex-end; gap: 36px; flex-wrap: nowrap; }
+    .footer-logo-item { display: flex; align-items: flex-end; }
+    .footer-logo-item img { display: block; width: auto; height: auto; max-width: 100%; object-fit: contain; }
+    .footer-logo-item.coelho img { height: 86px; }
+    .footer-logo-item.bsp img { height: 92px; }
+    .footer-logo-item.sequoia img { height: 48px; }
     .footer-bottom { padding-top: 48px; border-top: 1px solid rgba(255,255,255,.05); display: flex; justify-content: space-between; align-items: center; gap: 32px; }
     .legal { max-width: 760px; color: rgba(255,255,255,.3); font-size: 9px; letter-spacing: .02em; line-height: 1.9; }
     .social { display: flex; gap: 48px; flex-shrink: 0; }
@@ -319,7 +327,7 @@
       .leisure-info { top: 46%; bottom: 0; width: 100%; height: 54%; padding: 72px 28px 48px; text-align: left; align-items: flex-start; }
       .leisure-copy .line { margin-left: 0; }
       .contact-image::after { clip-path: polygon(0 70%, 100% 35%, 100% 100%, 0 100%); }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-logos { grid-column: span 1; grid-template-columns: 1fr; gap: 28px; }
       .plant-visual { min-height: 420px; }
     }
 
@@ -338,11 +346,16 @@
       .modal-footer { padding: 28px 22px; }
       .modal-controls { width: 100%; justify-content: space-between; }
       .leisure-stage { min-height: 720px; }
+      .leisure-caption { left: 18px; bottom: 18px; padding: 5px 7px; font-size: 6px; letter-spacing: .12em; }
       .leisure-controls { width: 100%; justify-content: space-between; gap: 18px; }
       .progress-controls { gap: 14px; }
       .tabs { gap: 10px; }
       .tab { width: 100%; }
       .plant-specs, .form-row, .footer-grid { grid-template-columns: 1fr; }
+      .footer-logo-row { gap: 24px; flex-wrap: wrap; }
+      .footer-logo-item.coelho img { height: 64px; }
+      .footer-logo-item.bsp img { height: 72px; }
+      .footer-logo-item.sequoia img { height: 40px; }
       .plant-card { gap: 40px; }
       .tech-sheet-head { flex-direction: column; align-items: flex-start; gap: 12px; }
       .tech-sheet ul { grid-template-columns: 1fr; }
@@ -391,19 +404,22 @@
           "title": "Fitness",
           "desc": "Intensidade e foco em espaços que inspiram superação.",
           "tag": "01 / Workout at Home",
-          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180612.png"
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180612.png",
+          "caption": "Perspectiva Ilustrada do Fitness"
         },
         {
           "title": "Piscina",
           "desc": "Momentos de pausa em cenários criados para desacelerar o tempo.",
           "tag": "02 / Wellness at Home",
-          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png",
+          "caption": "Perspectiva Ilustrada da Piscina"
         },
         {
           "title": "Espaço Gourmet",
           "desc": "Encontros que merecem o tempo certo e o lugar exato.",
           "tag": "03 / Gourmet at Home",
-          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png"
+          "image": "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20180543.png",
+          "caption": "Perspectiva Ilustrada da Área Gourmet"
         }],
       "plants": [
         {
@@ -771,9 +787,26 @@
           <h4>Interação</h4>
           <ul><li>+55 11 0000-0000</li><li>contato@702estadosunidos.com.br</li></ul>
         </div>
-        <div>
-          <h4>Incorporação</h4>
-          <div class="partners"><div class="partner">Sequoia</div><div class="partner">BSP</div></div>
+        <div class="footer-logos">
+          <div class="footer-logo-group">
+            <span class="footer-logo-label">Comercialização:</span>
+            <div class="footer-logo-row">
+              <div class="footer-logo-item coelho">
+                <img src="Logo Coelho Branco.png" alt="Coelho da Fonseca">
+              </div>
+            </div>
+          </div>
+          <div class="footer-logo-group">
+            <span class="footer-logo-label">Realização:</span>
+            <div class="footer-logo-row">
+              <div class="footer-logo-item bsp">
+                <img src="Sequoia_Verde-02.png" alt="Bradesco BSP Empreendimentos">
+              </div>
+              <div class="footer-logo-item sequoia">
+                <img src="logos-01.png" alt="Sequoia">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -934,7 +967,9 @@
       data.leisure.forEach((slide) => {
         const node = document.createElement('div');
         node.className = 'leisure-slide';
-        node.innerHTML = `<div class="leisure-image" style="background-image:url('${slide.image.replace(/'/g, '%27')}')"></div>`;
+        node.innerHTML = `
+          <div class="leisure-image" style="background-image:url('${slide.image.replace(/'/g, '%27')}')"></div>
+          ${slide.caption ? `<div class="leisure-caption">${slide.caption}</div>` : ''}`;
         leisureTrack.appendChild(node);
       });
       function renderLeisure(nextIndex, animate = true) {
