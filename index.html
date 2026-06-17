@@ -83,7 +83,7 @@
     .hero-bg { position: absolute; inset: 0; transform: scale(1.05); background-image: linear-gradient(180deg, rgba(29,29,27,.28), rgba(29,29,27,.52)), url("https://raw.githubusercontent.com/gustavokzintel/702-eua/main/ChatGPT-Image-7-de-abr.png"); background-size: cover; background-position: center; will-change: transform; }
     .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.3), rgba(29,29,27,.8)); }
     .hero-content { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding-top: 112px; padding-bottom: 48px; }
-    .hero-kicker { width: fit-content; margin: 0; padding: 14px 18px 14px 22px; border-left: 1px solid rgba(255,255,255,.75); background: rgba(14,14,12,.38); color: var(--porcelain); box-shadow: 0 18px 44px rgba(0,0,0,.22); backdrop-filter: blur(12px); font-size: 12px; font-weight: 500; letter-spacing: .34em; text-transform: uppercase; text-shadow: 0 2px 16px rgba(0,0,0,.7); }
+    .hero-kicker { width: fit-content; margin: 0; padding: 14px 18px 14px 22px; background: rgba(14,14,12,.38); color: var(--porcelain); box-shadow: 0 18px 44px rgba(0,0,0,.22); backdrop-filter: blur(12px); font-size: 12px; font-weight: 500; letter-spacing: .34em; text-transform: uppercase; text-shadow: 0 2px 16px rgba(0,0,0,.7); }
     .brand-logo-large { align-self: center; width: min(760px, 88vw); filter: drop-shadow(0 18px 35px rgba(0,0,0,.45)); }
     .brand-logo-large img { width: 100%; height: auto; }
     .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
@@ -224,23 +224,24 @@
     .tech-sheet li::before { content: counter(tech-item, decimal-leading-zero); color: rgba(255,255,255,.38); font-size: 10px; font-weight: 700; letter-spacing: .15em; padding-top: 4px; }
 
     .progress { padding: 160px 0; background: var(--carbon); color: var(--porcelain); }
-    .progress-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(56px, 8vw, 112px); align-items: start; }
-    .progress-left { display: grid; gap: 40px; }
-    .progress-header { display: grid; gap: 14px; }
+    .progress-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(320px, .8fr); gap: clamp(40px, 6vw, 88px); align-items: start; }
+    .progress-left { display: grid; gap: 24px; }
+    .progress-side { display: grid; gap: 26px; align-content: start; }
+    .progress-header { display: grid; gap: 8px; }
     .progress-title { margin: 0; color: rgba(255,255,255,.5); font-size: 10px; font-weight: 400; letter-spacing: .32em; text-transform: uppercase; }
     .progress-number { margin: 0; color: var(--porcelain); font-size: clamp(4.2rem, 10vw, 8rem); font-weight: 300; letter-spacing: -0.05em; line-height: .9; }
     .progress-number span { font-size: clamp(1.6rem, 3vw, 2.2rem); opacity: .5; margin-left: 4px; }
-    .progress-label { margin: 0; padding-left: 8px; color: rgba(255,255,255,.5); font-size: 10px; letter-spacing: .32em; text-transform: uppercase; }
+    .progress-label { margin: 0; color: rgba(255,255,255,.5); font-size: 10px; letter-spacing: .32em; text-transform: uppercase; }
     .progress-carousel { position: relative; }
-    .progress-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid rgba(255,255,255,.14); background: var(--carbon-deep); }
+    .progress-frame { position: relative; aspect-ratio: 16 / 11; overflow: hidden; border: 1px solid rgba(255,255,255,.14); background: var(--carbon-deep); }
     .progress-track { display: flex; height: 100%; transition: transform .7s var(--ease-editorial); }
     .progress-slide { min-width: 100%; height: 100%; background-size: cover; background-position: center; }
     .progress-controls { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; }
     .progress-counter { color: rgba(255,255,255,.55); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; }
     .progress-arrows { display: flex; gap: 12px; }
-    .progress-list { display: grid; gap: 40px; padding-top: 84px; }
-    .progress-row-head { display: flex; justify-content: space-between; align-items: flex-end; color: rgba(255,255,255,.42); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
-    .bar { height: 4px; margin-top: 16px; background: rgba(255,255,255,.1); overflow: hidden; position: relative; }
+    .progress-list { display: grid; gap: 24px; }
+    .progress-row-head { display: flex; justify-content: space-between; align-items: flex-end; color: rgba(255,255,255,.42); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .bar { height: 3px; margin-top: 10px; background: rgba(255,255,255,.1); overflow: hidden; position: relative; }
     .bar span { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--porcelain); transition: width 1.5s var(--ease-editorial); }
 
     .location { padding: 160px 0; background: var(--carbon); border-top: 1px solid rgba(255,255,255,.05); }
@@ -249,7 +250,7 @@
     .location-copy h2 { color: var(--porcelain); }
     .location-copy .body { max-width: 540px; color: rgba(255,255,255,.62); line-height: 1.9; font-size: 1.1rem; }
     .map-card { aspect-ratio: 1; background: var(--carbon-deep); border: 1px solid rgba(255,255,255,.1); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    .map-bg { position: absolute; inset: 0; opacity: .2; background-image: url("https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20182046.png"); background-size: cover; background-position: center; filter: grayscale(1); }
+    .map-bg { position: absolute; inset: 0; background-image: url("https://raw.githubusercontent.com/gustavokzintel/702-eua/main/Captura%20de%20tela%202026-04-30%20182046.png"); background-size: cover; background-position: center; }
     .map-svg { position: relative; z-index: 1; width: 70%; height: 70%; }
     .map-svg text { font: 700 20px var(--font-sans); letter-spacing: .16em; }
 
@@ -264,13 +265,13 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
     .field { border-bottom: 1px solid rgba(255,255,255,.2); padding: 16px 0; transition: border-color .3s; }
     .field:focus-within { border-color: #fff; }
-    .field label { display: block; color: rgba(255,255,255,.4); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+    .field label { display: block; color: #fff; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
     .field input { width: 100%; border: 0; outline: 0; background: transparent; color: #fff; font-size: 1.08rem; font-weight: 300; }
-    .field input::placeholder { color: rgba(255,255,255,.2); }
-    .radio-group p { margin: 0 0 16px; color: rgba(255,255,255,.4); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+    .field input::placeholder { color: #fff; }
+    .radio-group p { margin: 0 0 16px; color: #fff; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
     .radio-options { display: flex; flex-wrap: wrap; gap: 32px; }
     .radio-options input { position: absolute; opacity: 0; pointer-events: none; }
-    .radio-options span { color: rgba(255,255,255,.52); border-bottom: 1px solid transparent; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; transition: .25s; }
+    .radio-options span { color: #fff; border-bottom: 1px solid transparent; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; transition: .25s; }
     .radio-options label:hover span, .radio-options input:checked + span { color: #fff; border-color: #fff; }
     .submit-btn { width: fit-content; color: #fff; border-color: rgba(255,255,255,.3); }
     .submit-btn:hover { background: #fff; color: #000; }
@@ -460,7 +461,7 @@
         "Bicicletário decorado com bomba de pressão",
         "Reúso de água para irrigação",
         "Previsão de aquecimento solar na cobertura",
-        "Infraestrutura para automação residencial"
+        "Infraestrutura seca para automação residencial"
       ],
       "progress": [
         { "name": "Escavação", "p": 100 },
@@ -477,6 +478,27 @@
         "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/obras%20(2).png",
         "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/obras%20(3).png",
         "https://raw.githubusercontent.com/gustavokzintel/702-eua/main/obras%20(4).png"
+      ],
+      "techSheetItems": [
+        "ÁREA DO TERRENO: 1.090 M²",
+        "NÚMERO DE PAVIMENTOS: 01 GARDEN, 14 TIPOS, 01 PENTHOUSE",
+        "NÚMERO DE TORRES: 01",
+        "NÚMERO DE UNIDADES POR ANDAR: PAVIMENTOS GARDEN E TIPO, 05 UNIDADES POR ANDAR",
+        "VAGAS: 01 POR UNIDADE",
+        "NÚMERO DE ELEVADORES: 02",
+        "GARAGEM: 03 SUBSOLOS",
+        "DEPÓSITOS: 19",
+        "METRAGEM DAS UNIDADES",
+        "APARTAMENTOS-TIPO: 50 M² (1 DORM.), 56 M² (1 DORM.), 70 M² (2 DORMS.)",
+        "EMPRESAS E PROJETISTAS",
+        "CONSTRUTORA: R. YAZBEK",
+        "INCORPORAÇÃO: SEQUOIA PROPERTIES E BSP EMPREENDIMENTOS IMOBILIÁRIOS",
+        "PROJETO DE ARQUITETURA: TRIPTYQUE ARCHITECTURE",
+        "PROJETO DE INTERIORES: CONSUELO JORGE ARQUITETOS",
+        "PROJETO DE PAISAGISMO: ANDRE PAOLIELLO PAISAGISTAS ASSOCIADOS",
+        "ITENS DE LAZER: FITNESS, PISCINA, ESPAÇO GOURMET",
+        "APARTAMENTOS GARDEN: 70 M² (1 DORM.), 99 M² (1 DORM.), 117 M² (2 DORMS.), 135 M² (2 DORMS.), 147 M² (1 DORM.)",
+        "PENTHOUSES: 143 M² (2 SUÍTES), 165 M² (2 SUÍTES)"
       ]
     }
   </script>
@@ -514,7 +536,7 @@
         <div class="brand-logo-large"><img data-brand-logo alt="702" /></div>
         <div class="hero-bottom">
           <div class="hero-copy">
-            <p>Quando nada é supérfluo, tudo é definitivo.</p>
+            <p>Quando nada é supérfluo, tudo é definitivo</p>
             <p>50m² a 165m² · 1 e 2 dorms · 1 vaga</p>
             <p>O lifestyle dos Jardins e a essência do Jardim Europa juntos em um endereço.</p>
             <p>Rua Estados Unidos, 702 - Jardins, São Paulo / SP</p>
@@ -546,7 +568,7 @@
       <div class="manifesto-number">01 / Manifesto</div>
       <div class="container manifesto-inner">
         <p class="manifesto-line reveal"><strong>Presença absoluta:</strong> Rua Estados Unidos, um endereço que se impõe.</p>
-        <p class="manifesto-line reveal" data-delay="1"><strong>Horizonte particular:</strong> vista irrestrita para o verde do Jardim Europa.</p>
+        <p class="manifesto-line reveal" data-delay="1"><strong>Horizonte particular:</strong> vista para o verde do Jardim Europa.</p>
         <p class="manifesto-line reveal" data-delay="2"><strong>Precisão sem excessos:</strong> projeto autoral by Triptyque.</p>
         <p class="manifesto-sub reveal" data-delay="4">Um equilíbrio raro entre lugar, perspectiva e forma.</p>
         <p class="manifesto-end reveal" data-delay="4">Quando nada é acessório, tudo é definitivo.</p>
@@ -713,11 +735,6 @@
         <div class="map-card reveal" data-delay="1">
           <div class="map-bg"></div>
           <svg class="map-svg" viewBox="0 0 600 600" aria-label="Mapa estilizado da localização">
-            <g stroke="white" stroke-width="0.5" opacity="0.2" fill="none">
-              <line x1="0" y1="120" x2="600" y2="100"></line><line x1="0" y1="380" x2="600" y2="360"></line>
-              <line x1="120" y1="0" x2="100" y2="600"></line><line x1="380" y1="0" x2="360" y2="600"></line>
-            </g>
-            <line x1="40" y1="290" x2="560" y2="320" stroke="white" stroke-width="2" opacity="0.8"></line>
             <circle cx="300" cy="305" r="30" fill="none" stroke="white" stroke-width="1" opacity="0.3"></circle>
             <circle cx="300" cy="305" r="5" fill="white"></circle>
             <text x="315" y="300" fill="white">702</text>
@@ -777,7 +794,7 @@
         <div class="footer-brand">
           <p>Estados Unidos 702</p>
           <p>Address | View | Architecture</p>
-          <p>Quando nada é supérfluo, tudo é definitivo.</p>
+          <p>Quando nada é supérfluo, tudo é definitivo</p>
         </div>
         <div>
           <h4>Acesso</h4>
@@ -964,7 +981,8 @@
       const leisureTrack = $('#leisureTrack');
       const leisureCopy = $('#leisureCopy');
       const leisureCounter = $('#leisureCounter');
-      data.leisure.forEach((slide) => {
+      const leisureItems = Array.isArray(data.leisure) ? data.leisure.slice(0, 2) : [];
+      leisureItems.forEach((slide) => {
         const node = document.createElement('div');
         node.className = 'leisure-slide';
         node.innerHTML = `
@@ -973,10 +991,10 @@
         leisureTrack.appendChild(node);
       });
       function renderLeisure(nextIndex, animate = true) {
-        leisureIndex = (nextIndex + data.leisure.length) % data.leisure.length;
-        const slide = data.leisure[leisureIndex];
+        leisureIndex = (nextIndex + leisureItems.length) % leisureItems.length;
+        const slide = leisureItems[leisureIndex];
         leisureTrack.style.transform = `translateX(-${leisureIndex * 100}%)`;
-        leisureCounter.textContent = `${pad(leisureIndex + 1)} / ${pad(data.leisure.length)}`;
+        leisureCounter.textContent = `${pad(leisureIndex + 1)} / ${pad(leisureItems.length)}`;
         if (animate) leisureCopy.classList.add('is-changing');
         window.setTimeout(() => {
           leisureCopy.innerHTML = `
@@ -1025,7 +1043,31 @@
       }
       renderPlant(0);
 
+      const techSheetList = $('#techSheetContent ul');
+      if (techSheetList && Array.isArray(data.techSheetItems) && data.techSheetItems.length) {
+        techSheetList.innerHTML = '';
+        data.techSheetItems.forEach((item) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = item;
+          techSheetList.appendChild(listItem);
+        });
+      }
+
       const progressList = $('#progressList');
+      const progressGrid = $('.progress-grid');
+      const progressHeader = $('.progress-header');
+      if (progressGrid && progressList && progressHeader) {
+        const progressSide = document.createElement('div');
+        progressSide.className = 'progress-side reveal';
+        const revealDelay = progressList.getAttribute('data-delay');
+        if (revealDelay) progressSide.setAttribute('data-delay', revealDelay);
+        progressList.classList.remove('reveal');
+        progressList.removeAttribute('data-delay');
+        progressList.parentNode.insertBefore(progressSide, progressList);
+        progressSide.appendChild(progressHeader);
+        progressSide.appendChild(progressList);
+        revealObserver.observe(progressSide);
+      }
       data.progress.forEach((item, index) => {
         const row = document.createElement('div');
         row.className = 'progress-row reveal';
